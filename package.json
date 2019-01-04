@@ -1,0 +1,23 @@
+{
+  "name": "ejemplos_mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Connect.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongodb": "^3.0.10",
+    "consolidate":"^0.15.1",
+    "nunjucks":"^3.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mongo",
+    "express",
+    "node"
+  ],
+  "author": "Luis Ortuño",
+  "license": "ISC"
+}

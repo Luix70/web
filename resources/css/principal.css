@@ -1,0 +1,518 @@
+/* -------------------------------------------------------------
+REGLAS GENÉRICAS
+------------------------------------------------------------- */
+
+
+*, *:before, *:after{
+    margin:0;
+    padding:0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+html{
+    background-color: #fff;
+    color:#ddd;
+    /* font-family: 'Open Sans', 'Arial', sans-serif; */
+    font-family: 'Raleway', 'Open Sans', sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    
+}
+
+.body{
+    
+    margin:0;
+    padding:0;
+}
+
+.clearfix{
+    zoom: 1;
+}
+.clearfix:after{
+    content:".";
+    clear: both;
+    display:block;
+    height:0;
+    visibility: hidden;
+
+}
+.row{
+    max-width:1140px;
+    margin: 0 auto;
+    position:relative;
+}
+
+
+.screen{
+  
+    margin:0px 0px;
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding:1px 0px 0px 0px;   
+    position:relative;
+
+    /* min-width: 850px; */
+}
+
+
+
+.screen1{
+    /* background-image:  url('img/drop-of-water.jpg'); */
+    
+    width:100%;
+    height: 100vh;
+    min-width: 350px;
+    min-height: 280px;
+
+    
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto ;
+    height: 100%;
+    overflow:hidden;
+    z-index: -100;
+    
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto ;
+    height: 100%;
+    overflow:hidden;
+
+}
+
+#icon-nav{
+    display:none;
+    float:right;
+    position:absolute;
+    bottom:0%;
+    right:5%;
+    
+}
+
+
+#icon-nav a{
+    text-decoration: none;
+    -webkit-transition:color 0.4s;
+    transition:color 0.4s;
+    font-size:200%;
+    
+}
+
+#icon-nav  a:link, #icon-nav  a:visited{
+    
+    color: rgb(235, 159, 18);
+}
+
+#icon-nav  a:hover, #icon-nav  a:active{
+    color: #ddd;  
+    
+}
+
+
+
+#icon-nav-expanded{
+    display:none;
+    float:right;
+    position:absolute;
+    bottom:-10%;
+    right:5%;
+    
+}
+
+
+#icon-nav-expanded a{
+    text-decoration: none;
+    -webkit-transition:color 0.4s;
+    transition:color 0.4s;
+    font-size:250%;
+    
+}
+
+#icon-nav-expanded  a:link, #icon-nav-expanded  a:visited{
+    
+    color: rgb(235, 159, 18);
+}
+
+#icon-nav-expanded  a:hover, #icon-nav-expanded  a:active{
+    color: #ddd;  
+    
+}
+
+.contraido{
+    height:0;
+    top:50%;
+}
+
+
+.expandido{
+    height:auto;
+}
+
+.oculto{
+    display:none;
+}
+
+.visible{
+    display:block;
+}
+
+.sticky{
+    
+    /* 
+    
+    
+    padding-left:3em;
+    
+    padding:0;
+    width:100vw; */
+    
+    top:0;
+    left:0;
+    overflow:visible;
+    width:100%;
+    background: rgba(0, 0, 0, 1);
+    position:fixed;
+    
+    z-index: 98;
+    
+}
+
+nav{
+    z-index:100;
+    
+}
+
+.navegacion{
+   
+    position:absolute;
+    bottom:5%;
+    right:5%;
+    -webkit-transition: height 0.5s;
+    transition: height 0.5s;
+    z-index: 98;
+    
+    
+}
+.navegacion li{
+    display:inline-block;
+    margin-left:1em;
+    font-size:80%;
+    font-weight: 500;
+}
+
+
+
+.navegacion li:first-child{
+   
+    margin-left:0;
+
+}
+
+.navegacion a{
+    text-decoration: none;
+    -webkit-transition:color 0.4s;
+    transition:color 0.4s;
+}
+
+.navegacion a:link, .navegacion  a:visited{
+    
+    color: rgb(235, 159, 18);
+}
+
+.navegacion  a:hover, .navegacion  a:active{
+    color: #ddd;  
+    
+}
+
+.bottom{
+    position:absolute;
+    bottom:0.5em;
+    left:50%;
+    list-style: none;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    padding:0;
+    color: rgb(235, 159, 18);
+}
+
+.bottom i:first-of-type{
+    margin-right: 0.5em;
+}
+
+.bottom i:last-of-type{
+    margin-left: 0.5em;
+}
+
+
+.bottom li a:link, .bottom li a:visited{
+    color: rgb(235, 159, 18);
+    text-decoration: none;
+}
+
+.bottom  li a:hover, .bottom li a:active{
+    color: #ddd;
+    text-decoration: none;
+}
+
+main{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    margin:0,0,0,0;
+    overflow:hidden;
+    padding:2.5%;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.3)), to(rgba(0,0,0,1)));
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,1));
+}
+
+main .logo{
+    width:20%;
+    height: auto;
+    min-width:300px;
+    margin-top:0;
+    margin-left:5%;
+    
+
+}
+
+/* para que funcione el enlace en el logo */
+a.svg {
+    position: relative;
+    display: inline-block; 
+}
+  a.svg:after {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left:0;
+}
+
+
+.hero{
+    font-size: 300%;
+    font-weight: 200;
+    position:absolute;
+    width:90%;
+    text-align: center;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+            transform:translate(-50%, -50%);
+    text-transform: uppercase;
+}
+
+/* ----------------------------------------------
+SECCION PRODUCTOS
+---------------------------------------------- */
+
+.screen2{
+    
+    background-image:-webkit-gradient(linear,left top, left bottom,from(#eee),to(#eee));
+    background-image:linear-gradient(#eee,#eee);
+    /* background-image:url('img/macro.jpg'); */
+    width:100%;
+}
+
+.galeria{
+    list-style: none;
+    width:100%;
+    height:auto;
+
+
+}
+
+
+
+
+.galeria li{
+    /* Previo a la animacion debe ser invisible */
+    opacity:0;
+
+    display:block;
+    width:25%;
+    height: auto;
+    float: left;
+    position:relative;
+    overflow: hidden;
+}
+
+.galeria li.animated{
+    opacity:1;
+}
+.galeria figure{
+    width:100%;
+    
+    background-color: #000;
+    position:relative;
+    padding:0;
+    margin:0;
+}
+
+.galeria figure.descanso{
+    background-color:rgba(2, 11, 63, 1);
+    
+}
+
+.galeria figure.descanso img{
+    opacity:0.2;
+    
+}
+.galeria figcaption{
+    position:absolute;
+    top:50%;
+    left:50%;
+    font-size:200%;
+    font-weight: 300;
+    -webkit-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);
+    display:block;
+    opacity:1;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+
+.detalleFigura{
+    width: 100%;
+    background: rgba(2, 11, 63, 0.8);
+    position:absolute;
+    bottom:0;
+    height:0;
+    z-index: 99;
+    padding:0 2vw ;
+    margin:0;
+    font-size: 125%;
+    overflow: hidden;
+
+}
+
+
+.detalleFiguraSubt{
+    font-style: italic;
+    font-size:75%;
+    font-weight: 200;
+    margin-bottom:1em; 
+}
+
+.detalleFiguraText{
+    font-size:75%;
+    
+    
+}
+
+.galeria li .detalleFigura{
+    
+    -webkit-transition: height 0.5s;
+    
+    transition: height 0.5s;
+}
+
+
+.galeria img{
+    opacity: 0.6;
+    width: 100%;
+    height:auto;
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+    -webkit-transition:opacity 0.5s, -webkit-transform 0.5s;
+    transition:opacity 0.5s, -webkit-transform 0.5s;
+    transition:opacity 0.5s, transform 0.5s;
+    transition:opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+}
+
+.detalleFigura i{
+    float: right;
+    padding-top:0.2em;
+    padding-right: 0.2em;
+    font-size: 150%;
+    color:#ddd;
+}
+
+/* ACCIONES  */
+
+.galeria li:hover figcaption{
+    opacity:0;
+}
+
+
+.galeria li:hover img{
+    opacity: 1;
+    -webkit-transform:scale(1.30);
+            transform:scale(1.30);
+}
+
+
+
+.galeria li:hover .detalleFigura{
+    
+    left:0;
+    height:20%;
+    opacity:1;
+}
+.galeria li:hover .detalleFigura:hover{
+    
+    left:0;
+    width:100%;
+    height:80%;
+
+}
+
+
+/* ----------------------------------------------
+OTRAS SECCIONES
+---------------------------------------------- */
+
+
+.screen3{
+    background-image:-webkit-gradient(linear,left top, left bottom,from(#222),to(#222));
+    background-image:linear-gradient(#222,#222);
+    
+}
+
+/* ----------------------------------------------
+OTRAS SECCIONES
+---------------------------------------------- */
+
+.screen4{
+    /* background-image:  url('img/macro.jpg'); */
+    background-image:-webkit-gradient(linear,left top, left bottom,from(#bbb),to(#bbb));
+    background-image:linear-gradient(#bbb,#bbb);
+    
+}
+
+/* ----------------------------------------------
+OTRAS SECCIONES
+---------------------------------------------- */
+
+.screen5{
+    background-image:  url('img/mountains.jpg');
+    
+}
+
+/* ----------------------------------------------
+OTRAS SECCIONES
+---------------------------------------------- */
+.screen6{
+    background-image: url('img/water.jpg');
+    
+}

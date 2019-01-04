@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>INDESAN S.L.</title>
+    
+    <link rel="stylesheet" type="text/css" href="vendors/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="vendors/css/grid.css"/>
+    <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="vendors/css/animate.css"/>
+
+    <!-- CSS de Unite Gallery -->
+    <link rel='stylesheet' href='/vendors/unitegallery/css/unite-gallery.css' type='text/css' />
+    <!-- end CSS de Unite Gallery -->
+    
+    <link rel="stylesheet" type="text/css" href="/resources/css/principal.css"/>
+    <link rel="stylesheet" type="text/css" href="/resources/css/queries.css"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,400,700|Raleway:200,400,700" rel="stylesheet"/> 
+
+    
+</head>
+<body>
+   
+    
+    <section class="screen screen2 productos js--productos">
+          <ul class="galeria clearfix">
+            <li>
+                <figure>
+                    <img src="/resources/images/Colecciones/Activa_tn.jpg" alt="Coleccion ACTIVA">
+                    <figcaption>ACTIVA</figcaption>
+                </figure>
+
+                <div class="detalleFigura">
+                        <i class="ion-ios-plus"></i>
+                    <h3>Activa</h3>
+                    <p class="detalleFiguraSubt">
+                        La Fuerza del contraste
+                    </p>
+                    <p class="detalleFiguraText">
+                        Modernidad y elegancia entre metal y madera, un modelo funcional y sofisticado regulable en altura y
+                        apertura, donde mesa de centro y comedor se funden en una, para optimizar el espacio.
+                    </p>
+                </div>
+            </li>
+            
+
+            <li >
+                <figure class = 'descanso'>
+                    <img src="/resources/images/city2.jpg" alt="Coleccion INTEMPO">
+                    
+                </figure>
+            </li>
+
+
+            <li>
+                <figure>
+                    <img src="/resources/images/Colecciones/Aura_tn.jpg" alt="Coleccion AURA">
+                    <figcaption>AURA</figcaption>
+                </figure>
+
+                <div class="detalleFigura">
+                        <i class="ion-ios-plus"></i>
+                    <h3>Activa</h3>
+                    <p class="detalleFiguraSubt">
+                        La Fuerza del contraste
+                    </p>
+                    <p class="detalleFiguraText">
+                        Modernidad y elegancia entre metal y madera, un modelo funcional y sofisticado regulable en altura y
+                        apertura, donde mesa de centro y comedor se funden en una, para optimizar el espacio.
+                    </p>
+                </div>
+
+                
+            </li>
+            <li>
+                <figure>
+                    <img src="/resources/images/Colecciones/TOTEM_tn.jpg" alt="Coleccion TOTEM">
+                    <figcaption>TOTEM</figcaption>
+                </figure>
+                <div class="detalleFigura">
+                        <i class="ion-ios-plus"></i>
+                    <h3>Activa</h3>
+                    <p class="detalleFiguraSubt">
+                        La Fuerza del contraste
+                    </p>
+                    <p class="detalleFiguraText">
+                        Modernidad y elegancia entre metal y madera, un modelo funcional y sofisticado regulable en altura y
+                        apertura, donde mesa de centro y comedor se funden en una, para optimizar el espacio.
+                    </p>
+                </div>
+            </li>
+            
+
+        </ul>
+
+
+    </section>
+   
+    <section class="screen screen3 js--usuarios" >
+           <h1>Coleccion {{busqueda}}</h1>
+         <div id="gallery"  style="display:none;">
+               {% for imagen in imagenes %}
+                <img alt="{{imagen.alt}}"
+                     src="/{{imagen.src}}"
+                     {% if imagen.data_type %}
+                     data-type="/{{imagen.data_type}}"
+                     {% endif %}
+                     data-image="/{{imagen.data_image}}"
+                     {% if imagen.data_videomp4 %}
+                     data-videomp4="/{{imagen.data_videomp4}}"
+                     {% endif %}   
+                     {% if imagen.data_videowebm %}
+                     data-videowebm="/{{imagen.data_videwebm}}"
+                     {% endif %}                   
+                     data-description="{{imagen.data_description}}">
+                {% else %}
+                    <h2>No hay ninguna caratula</h2>
+                {% endfor %}
+            </div>                      
+        
+    </section>
+
+   
+
+    <!-- Script zone -->
+    <script
+        src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+
+    <script src="/vendors/script/jquery.waypoints.min.js"></script>
+
+    <!-- Scripts de Unite Gallery -->
+    <script type='text/javascript' src='/vendors/unitegallery/js/ug-common-libraries.js'></script>	
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-functions.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-thumbsgeneral.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-thumbsstrip.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-touchthumbs.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-panelsbase.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-strippanel.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-gridpanel.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-thumbsgrid.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-tiles.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-tiledesign.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-avia.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-slider.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-sliderassets.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-touchslider.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-zoomslider.js'></script>	
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-video.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-gallery.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-lightbox.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-carousel.js'></script>
+	<script type='text/javascript' src='/vendors/unitegallery/js/ug-api.js'></script>
+    <script type='text/javascript' src='/vendors/unitegallery/themes/tiles/ug-theme-tiles.js'></script>
+    <!-- End Scripts de Unite Gallery -->
+
+    <script src = "/resources/script/script.js"></script>
+    
+
+
+</body>
+<!-- Api key para Javascript Maps -->
+<!-- AIzaSyDmEBb6GhJ9ELDIn9uk9aPdBpQwUfcOsAw  -->
+</html>
