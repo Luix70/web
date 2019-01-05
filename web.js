@@ -14,9 +14,10 @@ app.use(express.static(__dirname)); //para poder referenciar las imagenes al dir
 //se ejecuta siempre que se pone en marcha el servidor
 
 
-app.get("/",(req,res)=>{
-  //res.sendFile(__dirname + "/index.html");
-});
+// app.get("/",(req,res)=>{
+//   //res.sendFile(__dirname + "/index.html");
+//   //res.send("Hello");
+// });
 
 
 app.listen(1080,()=>{
