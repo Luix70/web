@@ -12,13 +12,20 @@
     <link rel="stylesheet" type="text/css" href="vendors/css/animate.css"/>
 
     <!-- CSS de Unite Gallery -->
-    <link rel='stylesheet' href='vendors/unitegallery/css/unite-gallery.css' type='text/css' />
+     <link rel='stylesheet' href='vendors/unitegallery/css/unite-gallery.css' type='text/css' />
     <!-- end CSS de Unite Gallery -->
     
     <link rel="stylesheet" type="text/css" href="resources/css/principal.css"/>
     <link rel="stylesheet" type="text/css" href="resources/css/queries.css"/>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,400,700|Raleway:200,400,700" rel="stylesheet"/> 
+
+
+    <script src="resources/WebGL/Build/UnityLoader.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "resources/WebGL/Build/Final.json");
+    </script>
+
 
     
 </head>
@@ -40,6 +47,7 @@
                     <li><a href="#" class='js--scroll--to--nuestraEmpresa'>Nuestra Empresa</a></li>
                     <li><a href="#" class='js--scroll--to--usuarios'>Usuarios</a></li>
                     <li><a href="#" class='js--scroll--to--blog'>Noticias</a></li>
+                    <li><a href="#" class='js--scroll--to--configurador'>Configurador</a></li>
                     <li><a href="#" class='js--scroll--to--contacto'>Contacto</a></li>
                 </ul>
                 <div id="icon-nav">
@@ -526,20 +534,22 @@
         
     </section>
 
-    <section class="screen screen4 js--blog">
         
-            <h1>Blog</h1>
-            <script src="//rss.bloople.net/?url=http%3A%2F%2Findesan.com%2Fblog-es%2Ffeed%2F&detail=70&limit=5&showtitle=false&type=js"></script>
-        
-    </section>
 
+
+    <section class="screen screen5 js--configurador">
+        
+       
+        <div id="gameContainer" ></div>
+    
+    </section>
 
     <section class="screen screen5 js--contacto">
         
             <h1>Contacto</h1>
             <object type="image/svg+xml" data="resources/svg/logoIndesan_animated.svg" class = "logo" >
             </object> 
-        </main>
+        
     </section>
     <section class="screen screen6 js--nuestraEmpresa">
         
@@ -549,6 +559,11 @@
         
     </section>
 
+    <section class="screen screen4 js--blog">
+        <h1>Blog</h1>
+            
+        
+        </section>
 
     <!-- Script zone -->
     <script

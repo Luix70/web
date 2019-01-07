@@ -47,6 +47,10 @@
 .*
 ~*
 
+# ignore all files ending with .tif
+
+*.tif
+
 # ignore node/grunt dependency directories
 node_modules/
 

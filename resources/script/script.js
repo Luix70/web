@@ -46,6 +46,11 @@ $(document).ready(function(){
         return false;
     });  
 
+    $('.js--scroll--to--configurador').click(function(){
+        console.log('a configurador');
+        $('html, body').animate({scrollTop: $('.js--configurador').offset().top}, 1000);
+        return false;
+    }); 
 
     $('.js--scroll--to--contacto').click(function(){
         console.log('a colecciones');
