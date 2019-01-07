@@ -1,4 +1,76 @@
 $(document).ready(function(){
+
+    /* Cargamos la galeria */
+
+    function cargarcolecciones(){
+        
+        $.ajax({
+            //Primero consultamos la api para recuperar las colecciones
+            url:  'https://indesan.org:3001/colecciones/web',
+            success : function (result) {
+                //En caso de éxito, recuperamos la plantilla de cada coleccion
+                //con otra llamada de ajax 
+                var no_columns = 1;
+                if (window.innerWidth >= 480 ) no_columns=2;
+                if (window.innerWidth >= 768 ) no_columns=3;
+                if (window.innerWidth >= 1024 ) no_columns=4;
+                   
+                var no_descansos = no_columns - (result.length % no_columns);
+
+                var htmlDescanso="<li><figure class = 'descanso'><img src='/resources/images/descanso_:no_descanso:.jpg' alt='Descanso'></figure></li>";
+
+                console.log("descansos: " + no_descansos);
+                $.ajax({
+                    url:  'vistas/itemColeccion.html',
+                    success : function(html){
+                        //en caso de exito iteramos por los resultados de la API
+                        // y vamos construyendo el html de la galeria
+                        var ihtml = new String();
+                        result.forEach((element, index) => {
+                            //console.log(index);
+                            var item= new String(html);
+                            ihtml += item.replace(/:thumb:/ , element.thumbnail).
+                                            replace(/:mod:/g, element.mod).
+                                            replace(/:caption:/g, element.captions.es).
+                                            replace(/:description:/g, element.desc.es)
+                            if ((index -1 ) % Math.ceil((result.length / (no_descansos + 1))) == 0) {
+                                ihtml += htmlDescanso.replace(/:no_descanso:/, Math.round((index +1 ) / no_descansos)+1);
+                            }
+                            
+                        });
+                        //ahora localizamos la galeria e insertamos el html creado
+
+                        document.getElementById("listaColecciones").innerHTML = ihtml;
+
+                         /*Añadimos las animaciones de la galeria*/ 
+    
+                        $('.galeria li').each(function(index){
+
+                            $(this).addClass('js--li--wp' + index);
+
+                            $('.js--li--wp' + index).waypoint(function(direction){
+                                if (direction == 'down'){
+                                    $('.js--li--wp' + index).addClass('animated fadeIn');
+                                    $('.js--li--wp' + index).removeClass('fadeOut');
+                                } else {
+                                    $('.js--li--wp' + index).addClass('animated fadeOut');
+                                    $('.js--li--wp' + index).removeClass('fadeIn');
+                                }
+                            
+                            },{offset:'80%'});
+
+                        });
+                    }
+                });
+
+
+            }
+   
+        });
+       
+    };
+
+    cargarcolecciones();
    
     /* Aparicion del menu 'sticky' */
 
@@ -66,24 +138,7 @@ $(document).ready(function(){
       
 
 
-    /*animaciones de la galeria*/ 
-    
-    $('.galeria li').each(function(index){
-
-        $(this).addClass('js--li--wp' + index);
-
-        $('.js--li--wp' + index).waypoint(function(direction){
-            if (direction == 'down'){
-                $('.js--li--wp' + index).addClass('animated fadeIn');
-                $('.js--li--wp' + index).removeClass('fadeOut');
-            } else {
-                $('.js--li--wp' + index).addClass('animated fadeOut');
-                $('.js--li--wp' + index).removeClass('fadeIn');
-            }
-           
-        },{offset:'80%'});
-
-    });
+   
 
 
 
@@ -114,7 +169,14 @@ $(document).ready(function(){
         }
     );
 
-
+    //el codigo está manipulado para que solo se 
+    //ejecute cuando hemos terminado de cambiar el 
+    //tamaño de la ventana, no a cada paso
+    var resizeId;
+    $(window).on('resize',function() {
+        clearTimeout(resizeId);
+        resizeId = setTimeout(cargarcolecciones, 500);
+    });
       
 });
         
