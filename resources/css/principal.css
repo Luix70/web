@@ -382,7 +382,8 @@ SECCION PRODUCTOS
     top:50%;
     left:50%;
     font-size:200%;
-    font-weight: 300;
+    font-weight: 400;
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.7);
     -webkit-transform:translate(-50%,-50%);
             transform:translate(-50%,-50%);
     display:block;
