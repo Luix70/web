@@ -19,23 +19,31 @@ $(document).ready(function(){
 
                 var htmlDescanso="<li><figure class = 'descanso'><img src='/resources/images/descanso_:no_descanso:.jpg' alt='Descanso'></figure></li>";
 
-                console.log("descansos: " + no_descansos);
+                //console.log("descansos: " + no_descansos);
                 $.ajax({
                     url:  'vistas/itemColeccion.html',
                     success : function(html){
                         //en caso de exito iteramos por los resultados de la API
                         // y vamos construyendo el html de la galeria
                         var ihtml = new String();
+                        var itemsProcesados =0;
+                        var itemsDescanso = Math.floor(result.length / (no_descansos + 1));
                         result.forEach((element, index) => {
                             //console.log(index);
+                            
                             var item= new String(html);
                             ihtml += item.replace(/:thumb:/ , element.thumbnail).
                                             replace(/:mod:/g, element.mod).
                                             replace(/:caption:/g, element.captions.es).
                                             replace(/:description:/g, element.desc.es)
-                            if ((index -1 ) % Math.ceil((result.length / (no_descansos + 1))) == 0) {
-                                ihtml += htmlDescanso.replace(/:no_descanso:/, Math.round((index +1 ) / no_descansos)+1);
+
+                            //vemos si hay que insertar un descanso en la galeria
+                            itemsProcesados += 1;
+                            if (itemsProcesados > itemsDescanso){
+                                itemsProcesados=0;
+                                ihtml += htmlDescanso.replace(/:no_descanso:/, Math.round(index / (no_descansos+1)));
                             }
+                           
                             
                         });
                         //ahora localizamos la galeria e insertamos el html creado
