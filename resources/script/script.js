@@ -32,7 +32,7 @@ $(document).ready(function(){
                             //console.log(index);
                             
                             var item= new String(html);
-                            ihtml += item.replace(/:thumb:/ , element.thumbnail).
+                            ihtml += item.replace(/:thumb:/g , element.thumbnail).
                                             replace(/:mod:/g, element.mod).
                                             replace(/:caption:/g, element.captions.es).
                                             replace(/:description:/g, element.desc.es)
@@ -55,6 +55,10 @@ $(document).ready(function(){
                         $('.galeria li').each(function(index){
 
                             $(this).addClass('js--li--wp' + index);
+                            
+                            $(this).click(function(){
+                                cargarImagenes(this.dataset.coleccion);
+                            });
 
                             $('.js--li--wp' + index).waypoint(function(direction){
                                 if (direction == 'down'){
@@ -79,6 +83,57 @@ $(document).ready(function(){
     };
 
     cargarcolecciones();
+
+    /* Funcion que carga las imagenes en la galeria */
+    function cargarImagenes(coleccion){
+        if(coleccion) {
+            $.ajax({
+                url:  'https://indesan.org:3001/imagenes/' + coleccion,
+                success : function(imgs){
+
+                    //nos desplazamos a la zona de imagenes
+                    $('html, body').animate({scrollTop: $('.js--fotos').offset().top-50}, 1000);
+
+                    $.ajax({
+                        url:  'vistas/itemFoto.html',
+                        success : function(html){
+
+
+                            //la
+                            var ihtml="";
+                            var galeria = document.getElementById("gallery");
+                            var titulo=document.getElementById("titColeccion");
+                            imgs.forEach((element, index) => {
+                                ihtml += html.
+                                            replace(/:thumb:/g, element.folder + "/" + element.nombre_tn).
+                                            replace(/:img:/g, element.folder + "/" + element.nombre_img).
+                                            replace(/:pie:/g, element.pieFoto.es).
+                                            replace(/:alt:/g, element.pieFoto.es)
+
+                            });
+
+                            galeria.innerHTML=ihtml;
+                            titulo.innerHTML = `Coleccion: ${coleccion}`;
+                            console.log (galeria.innerHTML);
+                            $("#gallery").unitegallery(
+                                {
+                                    tile_enable_textpanel:true,
+                                    tile_textpanel_title_text_align: "center",
+                                }
+                            );
+
+                            
+
+                        }
+                    });
+            
+                    
+                }
+            });
+        }
+        
+    }
+    
    
     /* Aparicion del menu 'sticky' */
 
@@ -101,45 +156,47 @@ $(document).ready(function(){
 
     /*puntos de scroll*/
     $('.js--scroll--to--colecciones').click(function(){
-        console.log('a colecciones');
+        
         $('html, body').animate({scrollTop: $('.js--productos').offset().top}, 1000);
         return false;
     });  
 
+ 
+
     $('.js--scroll--to--nuestraEmpresa').click(function(){
-        console.log('a colecciones');
+       
         $('html, body').animate({scrollTop: $('.js--nuestraEmpresa').offset().top}, 1000);
         return false;
     });  
 
 
     $('.js--scroll--to--usuarios').click(function(){
-        console.log('a colecciones');
+       
         $('html, body').animate({scrollTop: $('.js--usuarios').offset().top}, 1000);
         return false;
     });  
 
 
     $('.js--scroll--to--blog').click(function(){
-        console.log('a colecciones');
+      
         $('html, body').animate({scrollTop: $('.js--blog').offset().top}, 1000);
         return false;
     });  
 
     $('.js--scroll--to--configurador').click(function(){
-        console.log('a configurador');
+       
         $('html, body').animate({scrollTop: $('.js--configurador').offset().top}, 1000);
         return false;
     }); 
 
     $('.js--scroll--to--contacto').click(function(){
-        console.log('a colecciones');
+     
         $('html, body').animate({scrollTop: $('.js--contacto').offset().top}, 1000);
         return false;
     });  
 
     $('.js--scroll--to--header').click(function(){
-        console.log('a colecciones');
+       
         $('html, body').animate({scrollTop: $('.js--header').offset().top}, 1000);
         return false;
     });  
@@ -170,12 +227,7 @@ $(document).ready(function(){
     });
 
 
-    $("#gallery").unitegallery(
-        {
-            tile_enable_textpanel:true,
-            tile_textpanel_title_text_align: "center",
-        }
-    );
+
 
     //el codigo está manipulado para que solo se 
     //ejecute cuando hemos terminado de cambiar el 
