@@ -3,7 +3,7 @@ $(document).ready(function(){
     /* Cargamos la galeria */
 
     function cargarcolecciones(){
-        
+        //console.log("cargando colecciones")
         $.ajax({
             //Primero consultamos la api para recuperar las colecciones
             url:  'https://indesan.org:3001/colecciones/web',
@@ -25,7 +25,7 @@ $(document).ready(function(){
                     success : function(html){
                         //en caso de exito iteramos por los resultados de la API
                         // y vamos construyendo el html de la galeria
-                        var ihtml = new String();
+                        var ihtml = "<ul>";
                         var itemsProcesados =0;
                         var itemsDescanso = Math.floor(result.length / (no_descansos + 1));
                         result.forEach((element, index) => {
@@ -46,6 +46,9 @@ $(document).ready(function(){
                            
                             
                         });
+
+                        ihtml += "</ul>";
+
                         //ahora localizamos la galeria e insertamos el html creado
 
                         document.getElementById("listaColecciones").innerHTML = ihtml;
@@ -55,11 +58,7 @@ $(document).ready(function(){
                         $('.galeria li').each(function(index){
 
                             $(this).addClass('js--li--wp' + index);
-                            
-                            $(this).click(function(){
-                                cargarImagenes(this.dataset.coleccion);
-                            });
-
+   
                             $('.js--li--wp' + index).waypoint(function(direction){
                                 if (direction == 'down'){
                                     $('.js--li--wp' + index).addClass('animated fadeIn');
@@ -71,6 +70,14 @@ $(document).ready(function(){
                             
                             },{offset:'80%'});
 
+                        });
+
+
+                        $('.galeria li .detalleFigura').each(function(index){
+                            $(this).click(function(){
+
+                                cargarImagenes(this.dataset.coleccion);
+                            });
                         });
                     }
                 });
@@ -90,37 +97,31 @@ $(document).ready(function(){
             $.ajax({
                 url:  'https://indesan.org:3001/imagenes/' + coleccion,
                 success : function(imgs){
-
-                    //nos desplazamos a la zona de imagenes
-                    $('html, body').animate({scrollTop: $('.js--fotos').offset().top-50}, 1000);
-
                     $.ajax({
                         url:  'vistas/itemFoto.html',
                         success : function(html){
 
 
                             //la
-                            var ihtml="";
-                            var galeria = document.getElementById("gallery");
-                            var titulo=document.getElementById("titColeccion");
+                            var ihtml="<ul>";
+                            var galeria = document.getElementById("listaColecciones");
+                           
                             imgs.forEach((element, index) => {
                                 ihtml += html.
                                             replace(/:thumb:/g, element.folder + "/" + element.nombre_tn).
                                             replace(/:img:/g, element.folder + "/" + element.nombre_img).
-                                            replace(/:pie:/g, element.pieFoto.es).
-                                            replace(/:alt:/g, element.pieFoto.es)
+                                            replace(/:caption:/g, element.pieFoto.es).
+                                            replace(/:alt:/g, element.pieFoto.es).
+                                            replace(/:description:/g, element.pieFoto.es).
+                                            replace(/:mod:/g, coleccion).
+                                            replace(/:mod:/g, coleccion)
 
                             });
-
+                            ihtml+="</ul>";
                             galeria.innerHTML=ihtml;
-                            titulo.innerHTML = `Coleccion: ${coleccion}`;
-                            console.log (galeria.innerHTML);
-                            $("#gallery").unitegallery(
-                                {
-                                    tile_enable_textpanel:true,
-                                    tile_textpanel_title_text_align: "center",
-                                }
-                            );
+                          
+                            
+                    
 
                             
 
@@ -156,8 +157,8 @@ $(document).ready(function(){
 
     /*puntos de scroll*/
     $('.js--scroll--to--colecciones').click(function(){
-        
-        $('html, body').animate({scrollTop: $('.js--productos').offset().top}, 1000);
+        cargarcolecciones();
+        $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
         return false;
     });  
 
@@ -234,11 +235,23 @@ $(document).ready(function(){
     //tamaño de la ventana, no a cada paso
     var resizeId;
     $(window).on('resize',function() {
-        clearTimeout(resizeId);
-        resizeId = setTimeout(cargarcolecciones, 500);
+        var new_ww = window.innerWidth;
+        var old_ww = sessionStorage.getItem('old_ww');
+        if (!old_ww || old_ww != new_ww){
+           // console.log("colecciones recargadas")
+            sessionStorage.setItem('old_ww', new_ww);
+            clearTimeout(resizeId);
+            resizeId = setTimeout(cargarcolecciones, 500);
+        }
+
     });
       
 });
         
-            
+setTimeout(function(){
+    //Saltamos a los productos a los 5 segundos
+
+    $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
+    return false;
+},5000);
       
