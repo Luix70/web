@@ -1,8 +1,12 @@
 sessionStorage.setItem('listaColecciones', 'null');
 sessionStorage.setItem('listaImagenes', 'null');
-
+userHasScrolled = false;
+window.onscroll = function (e)
+{
+    userHasScrolled = true;
+}
 var lang = (navigator.language || navigator.userLanguage).substring(0,2) ;
-console.log (lang);
+//console.log (lang);
 
 
 $(document).ready(function(){
@@ -27,7 +31,7 @@ $(document).ready(function(){
             var listaColecciones = sessionStorage.getItem('listaColecciones');
         
             if (!(listaColecciones == "null")){
-                console.log("listaColecciones recuperada");
+                //console.log("listaColecciones recuperada");
                 document.getElementById("listaColecciones").innerHTML = listaColecciones;
                 sessionStorage.setItem('listaImagenes', 'null');
                 resolve("ok");
@@ -81,7 +85,7 @@ $(document).ready(function(){
                                 //ahora localizamos la galeria e insertamos el html creado
         
                                 document.getElementById("listaColecciones").innerHTML = ihtml;
-                                console.log("listaColecciones construida");
+                                //console.log("listaColecciones construida");
                                 //guardamos el archivo de colecciones
                                 sessionStorage.setItem('listaColecciones', ihtml);
                                 //y limpiamos el de imagenes
@@ -134,7 +138,7 @@ $(document).ready(function(){
     function  cargarImagenes(coleccion){
         return new Promise(function(resolve, reject){
 
-            console.log("cargar imagenes de " + coleccion)
+            //console.log("cargar imagenes de " + coleccion)
             if(coleccion) {
                 var listaImagenes = sessionStorage.getItem('listaImagenes');
                 if (!(listaImagenes == "null")){
@@ -319,6 +323,7 @@ $(document).ready(function(){
 
 setTimeout(function(){
     //Saltamos a los productos a los 5 segundos
+    if (userHasScrolled) return false;
     
     $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
     return false;
