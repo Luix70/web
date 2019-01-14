@@ -2,13 +2,15 @@ var express = require("express");
 var fs=require("fs");
 var app=express();
 var https = require ("https");
-
+var config = require("config");
 var port = 80;
 var sPort = 443;
 
-if (NODE_ENV =  "development") {
+var NODE_ENV = config.get("NODE_ENV");
+console.log(NODE_ENV);
+if (NODE_ENV ==  "development") {
     port = 1080;
-    sPort=1443
+    sPort =1443;
 }
 
 app.use(express.static(__dirname)); //para poder referenciar las imagenes al directorio raiz
