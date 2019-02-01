@@ -125,6 +125,9 @@ $(document).ready(function(){
             
             },{offset:'80%'});
 
+            $(this).mouseenter(aseguraVisible)
+            $(this).click(aseguraVisible)
+
         });
 
         //
@@ -134,7 +137,22 @@ $(document).ready(function(){
             });
         });
     };
-  
+    
+    function aseguraVisible(){
+        var rect = this.getBoundingClientRect()
+        var menu = document.getElementsByClassName('sticky')[0]
+        var limSup=0
+        var limInf = rect.bottom
+        if (menu) limSup = menu.getBoundingClientRect().bottom
+
+        console.log(rect.top, limSup, rect.bottom, limInf)
+
+        if (rect.top <= limSup) return  window.scrollBy({top: rect.top - limSup, left: 0, behavior: 'smooth'})
+
+        if(window.innerHeight < limInf) return this.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'})
+
+    }
+
     function  cargarImagenes(coleccion){
         return new Promise(function(resolve, reject){
 
@@ -184,11 +202,7 @@ $(document).ready(function(){
 
 
                 }
-    
-               
-    
-                
-                // añadimos los comportamientos
+   
     
             }
 
@@ -201,6 +215,13 @@ $(document).ready(function(){
                 generarGaleriaColecciones();
                 $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
             });
+
+            
+        });
+
+        $('.galeria li').each(function(index){
+             $(this).mouseenter(aseguraVisible)
+             $(this).click(aseguraVisible)
         });
    }
     
@@ -240,7 +261,7 @@ $(document).ready(function(){
 
 
     $('.js--scroll--to--usuarios').click(function(){
-       
+        
         $('html, body').animate({scrollTop: $('.js--usuarios').offset().top}, 1000);
         return false;
     });  
