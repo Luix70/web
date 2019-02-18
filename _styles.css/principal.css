@@ -3,14 +3,10 @@ REGLAS GENÉRICAS
 ------------------------------------------------------------- */
 
 
-$colorDescanso:rgba(3, 11, 63, 1);
-
-
 *, *:before, *:after{
     margin:0;
     padding:0;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html{
@@ -110,7 +106,6 @@ html{
 
 #icon-nav a{
     text-decoration: none;
-    -webkit-transition:color 0.4s;
     transition:color 0.4s;
     font-size:200%;
     
@@ -140,7 +135,6 @@ html{
 
 #icon-nav-expanded a{
     text-decoration: none;
-    -webkit-transition:color 0.4s;
     transition:color 0.4s;
     font-size:250%;
     
@@ -205,7 +199,6 @@ nav{
     position:absolute;
     bottom:5%;
     right:5%;
-    -webkit-transition: height 0.5s;
     transition: height 0.5s;
     z-index: 0;
     
@@ -228,7 +221,6 @@ nav{
 
 .navegacion a{
     text-decoration: none;
-    -webkit-transition:color 0.4s;
     transition:color 0.4s;
 }
 
@@ -282,7 +274,6 @@ main{
     margin:0,0,0,0;
     overflow:hidden;
     padding:2.5%;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.3)), to(rgba(0,0,0,1)));
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,1));
 }
 
@@ -329,8 +320,6 @@ SECCION PRODUCTOS
 ---------------------------------------------- */
 
 .screen2{
-    
-    background-image:-webkit-gradient(linear,left top, left bottom,from(#eee),to(#eee));
     background-image:linear-gradient(#eee,#eee);
     /* background-image:url('img/macro.jpg'); */
     width:100%;
@@ -370,7 +359,7 @@ SECCION PRODUCTOS
 }
 
 .galeria figure.descanso{
-    background-color: $colorDescanso ;
+    background-color: rgba(3, 11, 63, 1);
     
 }
 
@@ -390,7 +379,6 @@ SECCION PRODUCTOS
             transform:translate(-50%,-50%);
     display:block;
     opacity:1;
-    -webkit-transition: opacity 0.5s;
     transition: opacity 0.5s;
 }
 
@@ -437,8 +425,6 @@ SECCION PRODUCTOS
 }
 
 .galeria li .detalleFigura{
- 
-    -webkit-transition: height 0.5s;
     transition: height 0.5s;
 }
 
@@ -449,7 +435,6 @@ SECCION PRODUCTOS
     height:auto;
     -webkit-transform: scale(1.05);
             transform: scale(1.05);
-    -webkit-transition:opacity 0.5s, -webkit-transform 0.5s;
     transition:opacity 0.5s, -webkit-transform 0.5s;
     transition:opacity 0.5s, transform 0.5s;
     transition:opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
@@ -497,7 +482,6 @@ OTRAS SECCIONES
 
 
 .screen3{
-    background-image:-webkit-gradient(linear,left top, left bottom,from(#222),to(#222));
     background-image:linear-gradient(#222,#222);
     
 }
@@ -508,7 +492,6 @@ OTRAS SECCIONES
 
 .screen4{
     /* background-image:  url('img/macro.jpg'); */
-    background-image:-webkit-gradient(linear,left top, left bottom,from(#bbb),to(#bbb));
     background-image:linear-gradient(#bbb,#bbb);
     
 }

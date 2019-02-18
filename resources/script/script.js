@@ -62,7 +62,7 @@ $(document).ready(function(){
                                 var itemsProcesados =0;
                                 var itemsDescanso = Math.floor(result.length / (no_descansos + 1));
                                 result.forEach((element, index) => {
-                                    //console.log(index);
+                                    //console.log(index)
                                     
                                     var item= new String(html);
                                     ihtml += item.replace(/:thumb:/g , element.thumbnail).
@@ -160,7 +160,7 @@ $(document).ready(function(){
             if(coleccion) {
                 var listaImagenes = sessionStorage.getItem('listaImagenes');
                 if (!(listaImagenes == "null")){
-                    console.log("listaImagenes recuperada");
+                    //console.log("listaImagenes recuperada");
                     document.getElementById("listaColecciones").innerHTML = listaImagenes;
                     resolve('ok');
                 } else {
