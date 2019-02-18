@@ -1,141 +1,231 @@
+sessionStorage.setItem('listaColecciones', 'null');
+sessionStorage.setItem('listaImagenes', 'null');
+userHasScrolled = false;
+window.onscroll = function (e)
+{
+    userHasScrolled = true;
+}
+var lang = (navigator.language || navigator.userLanguage).substring(0,2) ;
+//console.log (lang);
+
+
 $(document).ready(function(){
 
-    /* Cargamos la galeria */
-
-    function cargarcolecciones(){
-        
-        $.ajax({
-            //Primero consultamos la api para recuperar las colecciones
-            url:  'https://indesan.org:3001/colecciones/web',
-            success : function (result) {
-                //En caso de éxito, recuperamos la plantilla de cada coleccion
-                //con otra llamada de ajax 
-                var no_columns = 1;
-                if (window.innerWidth >= 480 ) no_columns=2;
-                if (window.innerWidth >= 768 ) no_columns=3;
-                if (window.innerWidth >= 1024 ) no_columns=4;
-                   
-                var no_descansos = no_columns - (result.length % no_columns);
-
-                var htmlDescanso="<li><figure class = 'descanso'><img src='/resources/images/descanso_:no_descanso:.jpg' alt='Descanso'></figure></li>";
-
-                //console.log("descansos: " + no_descansos);
-                $.ajax({
-                    url:  'vistas/itemColeccion.html',
-                    success : function(html){
-                        //en caso de exito iteramos por los resultados de la API
-                        // y vamos construyendo el html de la galeria
-                        var ihtml = new String();
-                        var itemsProcesados =0;
-                        var itemsDescanso = Math.floor(result.length / (no_descansos + 1));
-                        result.forEach((element, index) => {
-                            //console.log(index);
-                            
-                            var item= new String(html);
-                            ihtml += item.replace(/:thumb:/g , element.thumbnail).
-                                            replace(/:mod:/g, element.mod).
-                                            replace(/:caption:/g, element.captions.es).
-                                            replace(/:description:/g, element.desc.es)
-
-                            //vemos si hay que insertar un descanso en la galeria
-                            itemsProcesados += 1;
-                            if (itemsProcesados > itemsDescanso){
-                                itemsProcesados=0;
-                                ihtml += htmlDescanso.replace(/:no_descanso:/, Math.round(index / (no_descansos+1)));
-                            }
-                           
-                            
-                        });
-                        //ahora localizamos la galeria e insertamos el html creado
-
-                        document.getElementById("listaColecciones").innerHTML = ihtml;
-
-                         /*Añadimos las animaciones de la galeria*/ 
-    
-                        $('.galeria li').each(function(index){
-
-                            $(this).addClass('js--li--wp' + index);
-                            
-                            $(this).click(function(){
-                                cargarImagenes(this.dataset.coleccion);
-                            });
-
-                            $('.js--li--wp' + index).waypoint(function(direction){
-                                if (direction == 'down'){
-                                    $('.js--li--wp' + index).addClass('animated fadeIn');
-                                    $('.js--li--wp' + index).removeClass('fadeOut');
-                                } else {
-                                    $('.js--li--wp' + index).addClass('animated fadeOut');
-                                    $('.js--li--wp' + index).removeClass('fadeIn');
-                                }
-                            
-                            },{offset:'80%'});
-
-                        });
-                    }
-                });
-
-
-            }
-   
+    function generarGaleriaColecciones(){
+        cargarcolecciones().then(function(response){
+            asignarComportamientosColecciones();
+           
         });
+
        
-    };
-
-    cargarcolecciones();
-
-    /* Funcion que carga las imagenes en la galeria */
-    function cargarImagenes(coleccion){
-        if(coleccion) {
-            $.ajax({
-                url:  'https://indesan.org:3001/imagenes/' + coleccion,
-                success : function(imgs){
-
-                    //nos desplazamos a la zona de imagenes
-                    $('html, body').animate({scrollTop: $('.js--fotos').offset().top-50}, 1000);
-
-                    $.ajax({
-                        url:  'vistas/itemFoto.html',
-                        success : function(html){
-
-
-                            //la
-                            var ihtml="";
-                            var galeria = document.getElementById("gallery");
-                            var titulo=document.getElementById("titColeccion");
-                            imgs.forEach((element, index) => {
-                                ihtml += html.
-                                            replace(/:thumb:/g, element.folder + "/" + element.nombre_tn).
-                                            replace(/:img:/g, element.folder + "/" + element.nombre_img).
-                                            replace(/:pie:/g, element.pieFoto.es).
-                                            replace(/:alt:/g, element.pieFoto.es)
-
-                            });
-
-                            galeria.innerHTML=ihtml;
-                            titulo.innerHTML = `Coleccion: ${coleccion}`;
-                            console.log (galeria.innerHTML);
-                            $("#gallery").unitegallery(
-                                {
-                                    tile_enable_textpanel:true,
-                                    tile_textpanel_title_text_align: "center",
-                                }
-                            );
-
-                            
-
-                        }
-                    });
-            
-                    
-                }
-            });
-        }
+    }
+    function generarGaleriaImagenes(coleccion){
+        cargarImagenes(coleccion).then(function(response){
+            asignarComportamientosImagenes();
+            $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
+        });
         
     }
+    var  cargarcolecciones = function(){
+        return new Promise( function(resolve, reject){
+            var listaColecciones = sessionStorage.getItem('listaColecciones');
+        
+            if (!(listaColecciones == "null")){
+                //console.log("listaColecciones recuperada");
+                document.getElementById("listaColecciones").innerHTML = listaColecciones;
+                sessionStorage.setItem('listaImagenes', 'null');
+                resolve("ok");
+            } else {
+                $.ajax({
+                    //Primero consultamos la api para recuperar las colecciones
+                    url:  'https://indesan.org:3001/colecciones/web',
+                    success :
+                        function (result) {
+                        //En caso de éxito, recuperamos la plantilla de cada coleccion
+                        //con otra llamada de ajax 
+                        var no_columns = 1;
+                        if (window.innerWidth >= 480 ) no_columns=2;
+                        if (window.innerWidth >= 768 ) no_columns=3;
+                        if (window.innerWidth >= 1024 ) no_columns=4;
+                           
+                        var no_descansos = no_columns - (result.length % no_columns);
+        
+                        var htmlDescanso="<li><figure class = 'descanso'><img src='/resources/images/descanso_:no_descanso:.jpg' alt='Descanso'></figure></li>";
+        
+                        //console.log("descansos: " + no_descansos);
+                        $.ajax({
+                            url:  'vistas/itemColeccion.html',
+                            success : function(html){
+                                //en caso de exito iteramos por los resultados de la API
+                                // y vamos construyendo el html de la galeria
+                                var ihtml = "<ul>";
+                                var itemsProcesados =0;
+                                var itemsDescanso = Math.floor(result.length / (no_descansos + 1));
+                                result.forEach((element, index) => {
+                                    //console.log(index)
+                                    
+                                    var item= new String(html);
+                                    ihtml += item.replace(/:thumb:/g , element.thumbnail).
+                                                    replace(/:mod:/g, element.mod).
+                                                    replace(/:caption:/g, element.captions[lang]).
+                                                    replace(/:description:/g, element.desc[lang])
+        
+                                    //vemos si hay que insertar un descanso en la galeria
+                                    itemsProcesados += 1;
+                                    if (itemsProcesados > itemsDescanso){
+                                        itemsProcesados=0;
+                                        ihtml += htmlDescanso.replace(/:no_descanso:/, Math.round(index / (no_descansos+1)));
+                                    }
+                                   
+                                    
+                                });
+        
+                                ihtml += "</ul>";
+        
+                                //ahora localizamos la galeria e insertamos el html creado
+        
+                                document.getElementById("listaColecciones").innerHTML = ihtml;
+                                //console.log("listaColecciones construida");
+                                //guardamos el archivo de colecciones
+                                sessionStorage.setItem('listaColecciones', ihtml);
+                                //y limpiamos el de imagenes
+
+                                sessionStorage.setItem('listaImagenes', 'null');
+                                resolve("ok");
+
+                            }
+                        });
+                        
+        
+                    },
+                    error: function(err){
+                        reject(err);
+                    }
     
+                });
+            }
+
+        });
+    }
+    function asignarComportamientosColecciones (){
+
+        //Crear waypoints
+        $('.galeria li').each(function(index){
+
+            $(this).addClass('js--li--wp' + index);
+
+            $('.js--li--wp' + index).waypoint(function(direction){
+                if (direction == 'down'){
+                    $('.js--li--wp' + index).addClass('animated fadeIn');
+                    $('.js--li--wp' + index).removeClass('fadeOut');
+                } else {
+                    $('.js--li--wp' + index).addClass('animated fadeOut');
+                    $('.js--li--wp' + index).removeClass('fadeIn');
+                }
+            
+            },{offset:'80%'});
+
+            $(this).mouseenter(aseguraVisible)
+            $(this).click(aseguraVisible)
+
+        });
+
+        //
+        $('.galeria li .detalleFigura').each(function(index){
+            $(this).click(function(){
+                generarGaleriaImagenes(this.dataset.coleccion);
+            });
+        });
+    };
+    
+    function aseguraVisible(){
+        var rect = this.getBoundingClientRect()
+        var menu = document.getElementsByClassName('sticky')[0]
+        var limSup=0
+        var limInf = rect.bottom
+        if (menu) limSup = menu.getBoundingClientRect().bottom
+
+        console.log(rect.top, limSup, rect.bottom, limInf)
+
+        if (rect.top <= limSup) return  window.scrollBy({top: rect.top - limSup, left: 0, behavior: 'smooth'})
+
+        if(window.innerHeight < limInf) return this.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'})
+
+    }
+
+    function  cargarImagenes(coleccion){
+        return new Promise(function(resolve, reject){
+
+            //console.log("cargar imagenes de " + coleccion)
+            if(coleccion) {
+                var listaImagenes = sessionStorage.getItem('listaImagenes');
+                if (!(listaImagenes == "null")){
+                    //console.log("listaImagenes recuperada");
+                    document.getElementById("listaColecciones").innerHTML = listaImagenes;
+                    resolve('ok');
+                } else {
+                    $.ajax({
+                        url:  'https://indesan.org:3001/imagenes/' + coleccion,
+                        success : function(imgs){
+                            $.ajax({
+                                url:  'vistas/itemFoto.html',
+                                success : function(html){
+        
+        
+                                    //la
+                                    var ihtml="<ul>";
+                                    var galeria = document.getElementById("listaColecciones");
+                                   
+                                    imgs.forEach((element, index) => {
+                                        ihtml += html.
+                                                    replace(/:thumb:/g, element.folder + "/" + element.nombre_tn).
+                                                    replace(/:img:/g, element.folder + "/" + element.nombre_img).
+                                                    replace(/:caption:/g, element.pieFoto[lang]).
+                                                    replace(/:alt:/g, element.pieFoto[lang]).
+                                                    replace(/:description:/g, element.pieFoto[lang]).
+                                                    replace(/:mod:/g, coleccion)
+                                                   
+        
+                                    });
+                                    ihtml+="</ul>";
+        
+                                    sessionStorage.setItem('listaImagenes', ihtml);
+                                    galeria.innerHTML=ihtml;
+                                    
+                                    resolve('ok');
+    
+                                }
+                            });
+         
+                        }
+                    });
+
+
+                }
    
-    /* Aparicion del menu 'sticky' */
+    
+            }
+
+
+        });
+    }
+   function asignarComportamientosImagenes(){
+        $('.galeria li .ion-ios-undo').each(function(index){
+            $(this).click(function(){
+                generarGaleriaColecciones();
+                $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
+            });
+
+            
+        });
+
+        $('.galeria li').each(function(index){
+             $(this).mouseenter(aseguraVisible)
+             $(this).click(aseguraVisible)
+        });
+   }
+    
+
 
     var wp1 = new Waypoint({
         element: document.getElementsByClassName('js--productos')[0],
@@ -156,8 +246,8 @@ $(document).ready(function(){
 
     /*puntos de scroll*/
     $('.js--scroll--to--colecciones').click(function(){
+        generarGaleriaColecciones();
         
-        $('html, body').animate({scrollTop: $('.js--productos').offset().top}, 1000);
         return false;
     });  
 
@@ -171,7 +261,7 @@ $(document).ready(function(){
 
 
     $('.js--scroll--to--usuarios').click(function(){
-       
+        
         $('html, body').animate({scrollTop: $('.js--usuarios').offset().top}, 1000);
         return false;
     });  
@@ -228,17 +318,34 @@ $(document).ready(function(){
 
 
 
-
+    //RECALCULAR NUMERO DE COLUMNAS
     //el codigo está manipulado para que solo se 
     //ejecute cuando hemos terminado de cambiar el 
-    //tamaño de la ventana, no a cada paso
+    //tamaño de la ventana (y solo el ancho), no a cada paso
     var resizeId;
     $(window).on('resize',function() {
-        clearTimeout(resizeId);
-        resizeId = setTimeout(cargarcolecciones, 500);
+        var new_ww = window.innerWidth;
+        var old_ww = sessionStorage.getItem('old_ww');
+        if (!old_ww || old_ww != new_ww){
+           // console.log("colecciones recargadas")
+            sessionStorage.setItem('old_ww', new_ww);
+            clearTimeout(resizeId);
+            resizeId = setTimeout(cargarcolecciones, 500);
+        }
+
     });
+
+
+    generarGaleriaColecciones();
+
       
 });
         
-            
-      
+
+setTimeout(function(){
+    //Saltamos a los productos a los 5 segundos
+    if (userHasScrolled) return false;
+    
+    $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
+    return false;
+},5000);    
