@@ -5,7 +5,7 @@ REGLAS GENÉRICAS
 
 $colorDescanso:rgba(3, 11, 63, 1);
 $colorTexto:coral;
-
+$defaultColor:white;
 
 
 *, *:before, *:after{
@@ -16,7 +16,7 @@ $colorTexto:coral;
 }
 
 html{
-    background-color: #fff;
+    background-color: $defaultColor;
     color:#ddd;
     /* font-family: 'Open Sans', 'Arial', sans-serif; */
     font-family: 'Raleway', 'Open Sans', sans-serif;
