@@ -1,0 +1,83 @@
+
+#icon-nav{
+    display:none;
+    float:right;
+    position:absolute;
+    bottom:0%;
+    right:5%;
+    
+}
+
+
+#icon-nav a{
+    text-decoration: none;
+    -webkit-transition:color 0.4s;
+    transition:color 0.4s;
+    font-size:200%;
+    
+}
+
+#icon-nav  a:link, #icon-nav  a:visited{
+    
+    color: $colorTexto;
+}
+
+#icon-nav  a:hover, #icon-nav  a:active{
+    color: #ddd;  
+    
+}
+
+
+
+#icon-nav-expanded{
+    display:none;
+    float:right;
+    position:absolute;
+    bottom:-10%;
+    right:5%;
+    
+}
+
+
+#icon-nav-expanded a{
+    text-decoration: none;
+    -webkit-transition:color 0.4s;
+    transition:color 0.4s;
+    font-size:250%;
+    
+}
+
+#icon-nav-expanded  a:link, #icon-nav-expanded  a:visited{
+    
+    color: $colorTexto;
+}
+
+#icon-nav-expanded  a:hover, #icon-nav-expanded  a:active{
+    color: #ddd;  
+    
+}
+.sticky{
+    
+    /* 
+    
+    
+    padding-left:3em;
+    
+    padding:0;
+    width:100vw; */
+    
+    top:0;
+    left:0;
+    overflow:visible;
+    width:100%;
+    background: rgba(0, 0, 0, 1);
+    position:fixed;
+    
+    z-index: 98;
+    
+}
+
+nav{
+    z-index:100;
+    
+}
