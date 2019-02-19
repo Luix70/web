@@ -1,5 +1,6 @@
 var gulp = require('gulp')
+var bs = require('./bs')
 
 gulp.task('js',async function(){
-    console.log('hemos modificado el código')
+    bs.reload()
 })

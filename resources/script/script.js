@@ -1,6 +1,9 @@
 sessionStorage.setItem('listaColecciones', 'null');
 sessionStorage.setItem('listaImagenes', 'null');
+sessionStorage.setItem('JSONListaColecciones', 'null');
+
 userHasScrolled = false;
+
 window.onscroll = function (e)
 {
     userHasScrolled = true;
@@ -19,8 +22,9 @@ $(document).ready(function(){
 
        
     }
-    function generarGaleriaImagenes(coleccion){
-        cargarImagenes(coleccion).then(function(response){
+    function generarGaleriaImagenes(coleccion, index, html){
+
+        cargarImagenes(coleccion, index, html).then(function(response){
             asignarComportamientosImagenes();
             $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
         });
@@ -29,11 +33,13 @@ $(document).ready(function(){
     var  cargarcolecciones = function(){
         return new Promise( function(resolve, reject){
             var listaColecciones = sessionStorage.getItem('listaColecciones');
-        
+            var JSONListaColecciones = sessionStorage.getItem('JSONListaColecciones');
+
             if (!(listaColecciones == "null")){
                 //console.log("listaColecciones recuperada");
                 document.getElementById("listaColecciones").innerHTML = listaColecciones;
                 sessionStorage.setItem('listaImagenes', 'null');
+                
                 resolve("ok");
             } else {
                 $.ajax({
@@ -43,6 +49,8 @@ $(document).ready(function(){
                         function (result) {
                         //En caso de éxito, recuperamos la plantilla de cada coleccion
                         //con otra llamada de ajax 
+                        
+                         
                         var no_columns = 1;
                         if (window.innerWidth >= 480 ) no_columns=2;
                         if (window.innerWidth >= 768 ) no_columns=3;
@@ -68,7 +76,8 @@ $(document).ready(function(){
                                     ihtml += item.replace(/:thumb:/g , element.thumbnail).
                                                     replace(/:mod:/g, element.mod).
                                                     replace(/:caption:/g, element.captions[lang]).
-                                                    replace(/:description:/g, element.desc[lang])
+                                                    replace(/:description:/g, element.desc[lang]).
+                                                    replace(/:index:/g, index)
         
                                     //vemos si hay que insertar un descanso en la galeria
                                     itemsProcesados += 1;
@@ -88,6 +97,8 @@ $(document).ready(function(){
                                 //console.log("listaColecciones construida");
                                 //guardamos el archivo de colecciones
                                 sessionStorage.setItem('listaColecciones', ihtml);
+                                
+                                sessionStorage.setItem('JSONListaColecciones', JSON.stringify(result));
                                 //y limpiamos el de imagenes
 
                                 sessionStorage.setItem('listaImagenes', 'null');
@@ -133,7 +144,12 @@ $(document).ready(function(){
         //
         $('.galeria li .detalleFigura').each(function(index){
             $(this).click(function(){
-                generarGaleriaImagenes(this.dataset.coleccion);
+                var coleccion = this.dataset.coleccion
+                var indice = this.dataset.colindex
+                generarDatosColeccion(indice).then(function(response){
+                    generarGaleriaImagenes(coleccion, indice, response);    
+                })
+                
             });
         });
     };
@@ -145,7 +161,7 @@ $(document).ready(function(){
         var limInf = rect.bottom
         if (menu) limSup = menu.getBoundingClientRect().bottom
 
-        console.log(rect.top, limSup, rect.bottom, limInf)
+        //console.log(rect.top, limSup, rect.bottom, limInf)
 
         if (rect.top <= limSup) return  window.scrollBy({top: rect.top - limSup, left: 0, behavior: 'smooth'})
 
@@ -153,12 +169,40 @@ $(document).ready(function(){
 
     }
 
-    function  cargarImagenes(coleccion){
+    function generarDatosColeccion(indice){
+        return new Promise( function(resolve, reject){
+            var JSONData = JSON.parse(sessionStorage.getItem('JSONListaColecciones'))[indice]
+            console.log(JSONData)
+            //tenemos los datos. Leemos la plantilla y los mezclamos
+            $.ajax({
+                url:  'vistas/coleccion.html',
+                success : function(html){
+
+                    var html2 = html.replace(/:mod:/g,JSONData.mod)
+                                    .replace(/:tag:/g, JSONData.tags[lang] || "")
+                                    .replace(/:thn:/g,JSONData.tec_thumbnail || "") 
+                                    .replace(/:slogan:/g, JSONData.desc[lang] || "")
+
+                    resolve(html2)
+                },
+                error: function(){
+                    resolve('<ul>:galeria:</ul>')
+                }
+            })
+
+           
+        })
+    }
+
+    function  cargarImagenes(coleccion, indice, htmlParent){
+        
         return new Promise(function(resolve, reject){
 
             //console.log("cargar imagenes de " + coleccion)
             if(coleccion) {
                 var listaImagenes = sessionStorage.getItem('listaImagenes');
+
+
                 if (!(listaImagenes == "null")){
                     //console.log("listaImagenes recuperada");
                     document.getElementById("listaColecciones").innerHTML = listaImagenes;
@@ -173,7 +217,7 @@ $(document).ready(function(){
         
         
                                     //la
-                                    var ihtml="<ul>";
+                                    var ihtml="";
                                     var galeria = document.getElementById("listaColecciones");
                                    
                                     imgs.forEach((element, index) => {
@@ -187,10 +231,11 @@ $(document).ready(function(){
                                                    
         
                                     });
-                                    ihtml+="</ul>";
+                                    
+                                    htmlParent = htmlParent.replace(':galeria:', ihtml)
         
                                     sessionStorage.setItem('listaImagenes', ihtml);
-                                    galeria.innerHTML=ihtml;
+                                    galeria.innerHTML=htmlParent;
                                     
                                     resolve('ok');
     

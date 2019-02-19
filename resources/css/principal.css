@@ -802,3 +802,37 @@ OTRAS SECCIONES
         font-weight: 200;
     }
 }
+
+
+.detalleColeccion {
+
+    color:navy;
+
+}
+
+
+.detalleColeccion img {
+        margin: 1rem;
+        width:25%;
+        border-radius: 25px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        -ms-border-radius: 25px;
+        -o-border-radius: 25px;
+    }
+
+
+.detalleColeccion .hero {
+        
+       
+        font-size: 150%;
+        font-weight: 300;
+        position:absolute;
+        width:60%;
+        text-align: center;
+        top:50%;
+        left:100%;
+        -webkit-transform:translate(-110%, -50%);
+                transform:translate(-110%, -50%);
+        text-transform: uppercase;
+    }
