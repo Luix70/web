@@ -10,7 +10,10 @@ REGLAS GENÉRICAS
 
 $colorDescanso:rgba(3, 11, 63, 1);
 $colorTexto:coral;
+$colorParrafo: navy;
 $defaultColor:white;
+$colorNeutro: rgba(100,100,100,1);
+
 
 
 *, *:before, *:after{

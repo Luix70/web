@@ -12,7 +12,7 @@ var bs = require('./bs')
 gulp.task('cssCompile',async function(){
     return gulp.src( "./resources/css/cssparts/**/*.css").
     pipe(concat("principal.css")).
-    pipe(postcss([cssimport, mixins, autoprefixer, cssvars, cssnested])).
+    pipe(postcss([cssimport, cssnested,autoprefixer, cssvars])).
     on('error', async function(errorinfo){
         console.log(errorinfo.toString())
         this.emit('end')
