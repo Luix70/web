@@ -393,7 +393,6 @@ $(document).ready(function(){
 setTimeout(function(){
     //Saltamos a los productos a los 5 segundos
     if (userHasScrolled) return false;
-    
     $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
     return false;
 },5000);    

@@ -6806,7 +6806,7 @@ MEDIA QUERIES
 }
 
 .modelosColeccion__articulo{
-        display:inline-block;
+        display:block;
         text-align:left;
         height:100px;
         overflow:hidden;
