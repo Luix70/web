@@ -6493,6 +6493,10 @@ OTRAS SECCIONES
 
 }
 
+/* ----------------------------------------------
+MEDIA QUERIES
+---------------------------------------------- */
+
 @media only screen and (max-width: 1200px){
     #icon-nav-expanded{
         display:none;
@@ -6792,7 +6796,7 @@ OTRAS SECCIONES
     color:navy;
     padding:1rem 1rem;
     margin-bottom:1rem;
-    font-size:80%;
+    font-size:75%;
     vertical-align:top;
 
 
@@ -6814,12 +6818,19 @@ OTRAS SECCIONES
 .modelosColeccion__itemInfo{
         display:inline-block;
         text-align:left;
+        vertical-align:middle;
         
     }
 
+.modelosColeccion__itemInfo--bold{
+            font-size:110%;
+            font-weight: 800;
+        }
+
 .modelosColeccion__croquis li img{
-        height:80px;
-        width:250px;
+        
+        width:auto;
+        
         -webkit-transform:scale(1);
                 transform:scale(1);
       }

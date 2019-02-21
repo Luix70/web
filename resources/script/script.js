@@ -33,7 +33,7 @@ $(document).ready(function(){
     var  cargarcolecciones = function(){
         return new Promise( function(resolve, reject){
             var listaColecciones = sessionStorage.getItem('listaColecciones');
-            var JSONListaColecciones = sessionStorage.getItem('JSONListaColecciones');
+            
 
             if (!(listaColecciones == "null")){
                 //console.log("listaColecciones recuperada");
@@ -368,14 +368,17 @@ $(document).ready(function(){
     //ejecute cuando hemos terminado de cambiar el 
     //tamaño de la ventana (y solo el ancho), no a cada paso
     var resizeId;
+
     $(window).on('resize',function() {
+        
         var new_ww = window.innerWidth;
         var old_ww = sessionStorage.getItem('old_ww');
+        
         if (!old_ww || old_ww != new_ww){
            // console.log("colecciones recargadas")
             sessionStorage.setItem('old_ww', new_ww);
             clearTimeout(resizeId);
-            resizeId = setTimeout(cargarcolecciones, 500);
+            resizeId = setTimeout(generarGaleriaColecciones, 500);
         }
 
     });

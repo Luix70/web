@@ -70,7 +70,7 @@
     color:$colorParrafo;
     padding:1rem 1rem;
     margin-bottom:1rem;
-    font-size:80%;
+    font-size:75%;
     vertical-align:top;
      
     &__articulo{
@@ -86,14 +86,21 @@
     &__itemInfo{
         display:inline-block;
         text-align:left;
+        vertical-align:middle;
+        
+        &--bold{
+            font-size:110%;
+            font-weight: 800;
+        }
         
     }
 
     &__croquis{
 
       li img{
-        height:80px;
-        width:250px;
+        
+        width:auto;
+        
         -webkit-transform:scale(1);
                 transform:scale(1);
       }
