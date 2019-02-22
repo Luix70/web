@@ -370,7 +370,7 @@ $(document).ready(function(){
     var resizeId;
 
     $(window).on('resize',function() {
-        
+        return;
         var new_ww = window.innerWidth;
         var old_ww = sessionStorage.getItem('old_ww');
         
