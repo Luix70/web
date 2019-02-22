@@ -109,69 +109,6 @@ html{
 
 }
 
-
-.contraido{
-    height:0;
-    top:50%;
-}
-
-
-.expandido{
-    height:auto;
-}
-
-.oculto{
-    display:none;
-}
-
-.visible{
-    display:block;
-}
-
-
-
-.navegacion{
-   
-    position:absolute;
-    bottom:5%;
-    right:5%;
-    -webkit-transition: height 0.5s;
-    transition: height 0.5s;
-    z-index: 0;
-    
-    
-}
-.navegacion li{
-    display:inline-block;
-    margin-left:1em;
-    font-size:80%;
-    font-weight: 500;
-}
-
-
-
-.navegacion li:first-child{
-   
-    margin-left:0;
-
-}
-
-.navegacion a{
-    text-decoration: none;
-    -webkit-transition:color 0.4s;
-    transition:color 0.4s;
-}
-
-.navegacion a:link, .navegacion  a:visited{
-    
-    color: $colorTexto;
-}
-
-.navegacion  a:hover, .navegacion  a:active{
-    color: #ddd;  
-    
-}
-
 .bottom{
     position:absolute;
     bottom:0.5em;

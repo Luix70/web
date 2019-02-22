@@ -201,11 +201,25 @@
 
     .modelosColeccion {
         font-size:70%;
+
+         &__croquis{
+        
+            li img{
+                
+                width:auto;
+                
+                -webkit-transform:scale(0.9);
+                        transform:scale(0.9);
+            }
+
+            li:hover img{
+                -webkit-transform:scale(0.9);
+                        transform:scale(0.9);
+            }    
+
+        }
     }
 
-
-    
-  
 
  }  
 
