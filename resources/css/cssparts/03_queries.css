@@ -68,7 +68,8 @@ MEDIA QUERIES
     
     #icon-nav{
         display:inline-block;
-        
+        font-size:100%;
+        margin-right:-1.5rem;
     }
 
     #icon-nav-expanded{
@@ -132,12 +133,14 @@ MEDIA QUERIES
 
     #icon-nav{
         display:inline-block;
+        font-size:100%;
+        margin-right:-1rem;
     }
 
     #icon-nav-expanded{
         display:none;
         font-size:100%;
-        margin-right:-1.5rem;
+        margin-right:-1rem;
     }
 }
 
@@ -158,6 +161,8 @@ MEDIA QUERIES
 
     #icon-nav{
         display:inline-block;
+        font-size:100%;
+        margin-right:0;
         
     }
 

@@ -6210,7 +6210,7 @@ a.svg:after {
 
 .navegacion a{
     text-decoration: none;
-    transition:color 0.4s;
+    transition:color 0.2s;
 }
 
 .navegacion a:link, .navegacion  a:visited{
@@ -6234,7 +6234,7 @@ a.svg:after {
 
 #icon-nav a{
     text-decoration: none;
-    transition:color 0.4s;
+    transition:color 0.2s;
     font-size:200%;
     
 }
@@ -6260,7 +6260,7 @@ a.svg:after {
 
 #icon-nav-expanded a{
     text-decoration: none;
-    transition:color 0.4s;
+    transition:color 0.2s;
     font-size:250%;
     
 }
@@ -6381,6 +6381,10 @@ SECCION PRODUCTOS
 
 }
 
+.detalleFigura__coleccion p{
+     font-size: 0.8rem;
+}
+
 .detalleFigura__foto{
     width: 100%;
     background: rgba(65, 65, 65, 0.8);
@@ -6403,7 +6407,7 @@ SECCION PRODUCTOS
 }
 
 .detalleFiguraText{
-    font-size:0.75rem;
+    font-size:0.5rem ;
     
     
 }
@@ -6565,7 +6569,8 @@ MEDIA QUERIES
     
     #icon-nav{
         display:inline-block;
-        
+        font-size:100%;
+        margin-right:-1.5rem;
     }
 
     #icon-nav-expanded{
@@ -6630,12 +6635,14 @@ MEDIA QUERIES
 
     #icon-nav{
         display:inline-block;
+        font-size:100%;
+        margin-right:-1rem;
     }
 
     #icon-nav-expanded{
         display:none;
         font-size:100%;
-        margin-right:-1.5rem;
+        margin-right:-1rem;
     }
 }
 
@@ -6655,6 +6662,8 @@ MEDIA QUERIES
 
     #icon-nav{
         display:inline-block;
+        font-size:100%;
+        margin-right:0;
         
     }
 

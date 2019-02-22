@@ -51,8 +51,8 @@
 
 .navegacion a{
     text-decoration: none;
-    -webkit-transition:color 0.4s;
-    transition:color 0.4s;
+    -webkit-transition:color 0.2s;
+    transition:color 0.2s;
 }
 
 .navegacion a:link, .navegacion  a:visited{
@@ -78,8 +78,8 @@
 
 #icon-nav a{
     text-decoration: none;
-    -webkit-transition:color 0.4s;
-    transition:color 0.4s;
+    -webkit-transition:color 0.2s;
+    transition:color 0.2s;
     font-size:200%;
     
 }
@@ -108,8 +108,8 @@
 
 #icon-nav-expanded a{
     text-decoration: none;
-    -webkit-transition:color 0.4s;
-    transition:color 0.4s;
+    -webkit-transition:color 0.2s;
+    transition:color 0.2s;
     font-size:250%;
     
 }

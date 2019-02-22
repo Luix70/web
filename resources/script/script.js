@@ -1,46 +1,47 @@
-sessionStorage.setItem('listaColecciones', 'null');
-sessionStorage.setItem('listaImagenes', 'null');
-sessionStorage.setItem('JSONListaColecciones', 'null');
+sessionStorage.setItem('listaColecciones', 'null')
+sessionStorage.setItem('listaImagenes', 'null')
+sessionStorage.setItem('JSONListaColecciones', 'null')
+var galeriaMostrada=''
 
-userHasScrolled = false;
+userHasScrolled = false
 
 window.onscroll = function (e)
 {
-    userHasScrolled = true;
+    userHasScrolled = true
 }
-var lang = (navigator.language || navigator.userLanguage).substring(0,2) ;
-//console.log (lang);
+var lang = (navigator.language || navigator.userLanguage).substring(0,2) 
+//console.log (lang)
 
 
 $(document).ready(function(){
 
     function generarGaleriaColecciones(){
         cargarcolecciones().then(function(response){
-            asignarComportamientosColecciones();
-           
-        });
+            asignarComportamientosColecciones()
+            $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
+        })
 
        
     }
     function generarGaleriaImagenes(coleccion, index, html){
 
         cargarImagenes(coleccion, index, html).then(function(response){
-            asignarComportamientosImagenes();
-            $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
-        });
+            asignarComportamientosImagenes()
+            $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
+        })
         
     }
     var  cargarcolecciones = function(){
         return new Promise( function(resolve, reject){
-            var listaColecciones = sessionStorage.getItem('listaColecciones');
+            var listaColecciones = sessionStorage.getItem('listaColecciones')
             
 
             if (!(listaColecciones == "null")){
-                //console.log("listaColecciones recuperada");
-                document.getElementById("listaColecciones").innerHTML = listaColecciones;
-                sessionStorage.setItem('listaImagenes', 'null');
+                //console.log("listaColecciones recuperada")
+                document.getElementById("listaColecciones").innerHTML = listaColecciones
+                sessionStorage.setItem('listaImagenes', 'null')
                 
-                resolve("ok");
+                resolve("ok")
             } else {
                 $.ajax({
                     //Primero consultamos la api para recuperar las colecciones
@@ -51,28 +52,28 @@ $(document).ready(function(){
                         //con otra llamada de ajax 
                         
                          
-                        var no_columns = 1;
-                        if (window.innerWidth >= 480 ) no_columns=2;
-                        if (window.innerWidth >= 768 ) no_columns=3;
-                        if (window.innerWidth >= 1024 ) no_columns=4;
+                        var no_columns = 1
+                        if (window.innerWidth >= 480 ) no_columns=2
+                        if (window.innerWidth >= 768 ) no_columns=3
+                        if (window.innerWidth >= 1024 ) no_columns=4
                            
-                        var no_descansos = no_columns - (result.length % no_columns);
+                        var no_descansos = no_columns - (result.length % no_columns)
         
-                        var htmlDescanso="<li><figure class = 'descanso'><img src='/resources/images/descanso_:no_descanso:.jpg' alt='Descanso'></figure></li>";
+                        var htmlDescanso="<li><figure class = 'descanso'><img src='/resources/images/descanso_:no_descanso:.jpg' alt='Descanso'></figure></li>"
         
-                        //console.log("descansos: " + no_descansos);
+                        //console.log("descansos: " + no_descansos)
                         $.ajax({
                             url:  'vistas/itemColeccion.html',
                             success : function(html){
                                 //en caso de exito iteramos por los resultados de la API
                                 // y vamos construyendo el html de la galeria
-                                var ihtml = "<ul>";
-                                var itemsProcesados =0;
-                                var itemsDescanso = Math.floor(result.length / (no_descansos + 1));
+                                var ihtml = "<ul>"
+                                var itemsProcesados =0
+                                var itemsDescanso = Math.floor(result.length / (no_descansos + 1))
                                 result.forEach((element, index) => {
                                     //console.log(index)
                                     
-                                    var item= new String(html);
+                                    var item= new String(html)
                                     ihtml += item.replace(/:thumb:/g , element.thumbnail).
                                                     replace(/:mod:/g, element.mod).
                                                     replace(/:caption:/g, element.captions[lang]).
@@ -80,66 +81,66 @@ $(document).ready(function(){
                                                     replace(/:index:/g, index)
         
                                     //vemos si hay que insertar un descanso en la galeria
-                                    itemsProcesados += 1;
+                                    itemsProcesados += 1
                                     if (itemsProcesados > itemsDescanso){
-                                        itemsProcesados=0;
-                                        ihtml += htmlDescanso.replace(/:no_descanso:/, Math.round(index / (no_descansos+1)));
+                                        itemsProcesados=0
+                                        ihtml += htmlDescanso.replace(/:no_descanso:/, Math.round(index / (no_descansos+1)))
                                     }
                                    
                                     
-                                });
+                                })
         
-                                ihtml += "</ul>";
+                                ihtml += "</ul>"
         
                                 //ahora localizamos la galeria e insertamos el html creado
         
-                                document.getElementById("listaColecciones").innerHTML = ihtml;
-                                //console.log("listaColecciones construida");
+                                document.getElementById("listaColecciones").innerHTML = ihtml
+                                //console.log("listaColecciones construida")
                                 //guardamos el archivo de colecciones
-                                sessionStorage.setItem('listaColecciones', ihtml);
+                                sessionStorage.setItem('listaColecciones', ihtml)
                                 
-                                sessionStorage.setItem('JSONListaColecciones', JSON.stringify(result));
+                                sessionStorage.setItem('JSONListaColecciones', JSON.stringify(result))
                                 //y limpiamos el de imagenes
 
-                                sessionStorage.setItem('listaImagenes', 'null');
-                                resolve("ok");
+                                sessionStorage.setItem('listaImagenes', 'null')
+                                resolve("ok")
 
                             }
-                        });
+                        })
                         
-        
+                        galeriaMostrada='colecciones'
                     },
                     error: function(err){
-                        reject(err);
+                        reject(err)
                     }
     
-                });
+                })
             }
 
-        });
+        })
     }
     function asignarComportamientosColecciones (){
 
         //Crear waypoints
         $('.galeria li').each(function(index){
 
-            $(this).addClass('js--li--wp' + index);
+            $(this).addClass('js--li--wp' + index)
 
             $('.js--li--wp' + index).waypoint(function(direction){
                 if (direction == 'down'){
-                    $('.js--li--wp' + index).addClass('animated fadeIn');
-                    $('.js--li--wp' + index).removeClass('fadeOut');
+                    $('.js--li--wp' + index).addClass('animated fadeIn')
+                    $('.js--li--wp' + index).removeClass('fadeOut')
                 } else {
-                    $('.js--li--wp' + index).addClass('animated fadeOut');
-                    $('.js--li--wp' + index).removeClass('fadeIn');
+                    $('.js--li--wp' + index).addClass('animated fadeOut')
+                    $('.js--li--wp' + index).removeClass('fadeIn')
                 }
             
-            },{offset:'80%'});
+            },{offset:'80%'})
 
             $(this).mouseenter(aseguraVisible)
             $(this).click(aseguraVisible)
 
-        });
+        })
 
         //
         $('.galeria li .detalleFigura').each(function(index){
@@ -147,12 +148,12 @@ $(document).ready(function(){
                 var coleccion = this.dataset.coleccion
                 var indice = this.dataset.colindex
                 generarDatosColeccion(indice).then(function(response){
-                    generarGaleriaImagenes(coleccion, indice, response);    
+                    generarGaleriaImagenes(coleccion, indice, response) 
                 })
                 
-            });
-        });
-    };
+            })
+        })
+    }
     
     function aseguraVisible(){
         var rect = this.getBoundingClientRect()
@@ -169,19 +170,32 @@ $(document).ready(function(){
 
     }
 
+    function setDefaultsColeccion(jsonColeccion){
+        
+        var njc= jsonColeccion
+        njc.tags = njc.tags || {es:'notag' , en:'notag', fr:'notag' }
+        njc.desc = njc.desc || {es:'nodesc' , en:'nodesc', fr:'nodesc' }
+        njc.tec_thumbnail = njc.tec_thumbnail || 'no_thumb'
+
+        return njc
+
+    }
+
     function generarDatosColeccion(indice){
         return new Promise( function(resolve, reject){
-            var JSONData = JSON.parse(sessionStorage.getItem('JSONListaColecciones'))[indice]
-            console.log(JSONData)
+
+            var JSONData = setDefaultsColeccion(JSON.parse(sessionStorage.getItem('JSONListaColecciones'))[indice])
+            
             //tenemos los datos. Leemos la plantilla y los mezclamos
             $.ajax({
                 url:  'vistas/coleccion.html',
                 success : function(html){
 
                     var html2 = html.replace(/:mod:/g,JSONData.mod)
-                                    .replace(/:tag:/g, JSONData.tags[lang] || "")
-                                    .replace(/:thn:/g,JSONData.tec_thumbnail || "") 
-                                    .replace(/:slogan:/g, JSONData.desc[lang] || "")
+                                    .replace(/:tag:/g, JSONData.tags[lang] )
+                                    .replace(/:thn:/g,JSONData.tec_thumbnail ) 
+                                    .replace(/:slogan:/g, JSONData.desc[lang])
+                                    .replace(/:captions:/g, JSONData.captions[lang])
 
                     resolve(html2)
                 },
@@ -200,26 +214,41 @@ $(document).ready(function(){
 
             //console.log("cargar imagenes de " + coleccion)
             if(coleccion) {
-                var listaImagenes = sessionStorage.getItem('listaImagenes');
+                var listaImagenes = sessionStorage.getItem('listaImagenes')
 
 
                 if (!(listaImagenes == "null")){
-                    //console.log("listaImagenes recuperada");
-                    document.getElementById("listaColecciones").innerHTML = listaImagenes;
-                    resolve('ok');
+                    //console.log("listaImagenes recuperada")
+                    document.getElementById("listaColecciones").innerHTML = listaImagenes
+                    resolve('ok')
                 } else {
+
+
+
                     $.ajax({
                         url:  'https://indesan.org:3001/imagenes/' + coleccion,
                         success : function(imgs){
+
+                            var no_columns = 1
+                            if (window.innerWidth >= 480 ) no_columns=2
+                            if (window.innerWidth >= 768 ) no_columns=3
+                            if (window.innerWidth >= 1024 ) no_columns=4
+                               
+                            var no_descansos = no_columns - (imgs.length % no_columns)
+            
+                            var htmlDescanso="<li><figure class = 'descanso'><img src='/resources/images/descanso_:no_descanso:.jpg' alt='Descanso'></figure></li>"
+
                             $.ajax({
                                 url:  'vistas/itemFoto.html',
                                 success : function(html){
         
         
                                     //la
-                                    var ihtml="";
-                                    var galeria = document.getElementById("listaColecciones");
-                                   
+                                    var ihtml=""
+                                    var galeria = document.getElementById("listaColecciones")
+                                    var itemsProcesados =0
+                                    var itemsDescanso = Math.floor(imgs.length / (no_descansos + 1))
+
                                     imgs.forEach((element, index) => {
                                         ihtml += html.
                                                     replace(/:thumb:/g, element.folder + "/" + element.nombre_tn).
@@ -228,22 +257,33 @@ $(document).ready(function(){
                                                     replace(/:alt:/g, element.pieFoto[lang]).
                                                     replace(/:description:/g, element.pieFoto[lang]).
                                                     replace(/:mod:/g, coleccion)
+
+
+                                                    //vemos si hay que insertar un descanso en la galeria
+                                                    itemsProcesados += 1
+                                                    if (itemsProcesados > itemsDescanso){
+                                                        itemsProcesados=0
+                                                        ihtml += htmlDescanso.replace(/:no_descanso:/, Math.round(index / (no_descansos+1)))
+                                                    }
                                                    
         
-                                    });
+                                    })
                                     
                                     htmlParent = htmlParent.replace(':galeria:', ihtml)
         
-                                    sessionStorage.setItem('listaImagenes', ihtml);
-                                    galeria.innerHTML=htmlParent;
+                                    sessionStorage.setItem('listaImagenes', htmlParent)
+                                    galeria.innerHTML=htmlParent
                                     
-                                    resolve('ok');
+                                    resolve('ok')
     
                                 }
-                            });
+                            })
+
+                            galeriaMostrada= {'coleccion':coleccion, 'indice':indice,}
          
                         }
-                    });
+
+                    })
 
 
                 }
@@ -252,147 +292,186 @@ $(document).ready(function(){
             }
 
 
-        });
+        })
     }
    function asignarComportamientosImagenes(){
         $('.galeria li .ion-ios-undo').each(function(index){
             $(this).click(function(){
-                generarGaleriaColecciones();
-                $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
-            });
+                generarGaleriaColecciones()
+                
+            })
 
             
-        });
+        })
 
         $('.galeria li').each(function(index){
              $(this).mouseenter(aseguraVisible)
              $(this).click(aseguraVisible)
-        });
+        })
    }
     
 
 
     var wp1 = new Waypoint({
-        element: document.getElementsByClassName('js--productos')[0],
+        element: document.getElementsByClassName('js--nuestraEmpresa')[0],
         handler: function(direction) {
             
             if (direction =='down'){
-                $('nav').removeClass('row').addClass('sticky');
+                $('nav').removeClass('row').addClass('sticky')
             }else{
-                $('nav').removeClass('sticky').addClass('row');
+                $('nav').removeClass('sticky').addClass('row')
             }
   
   
         },
             offset: '10%'
-        });
+        })
 
 
 
     /*puntos de scroll*/
     $('.js--scroll--to--colecciones').click(function(){
-        generarGaleriaColecciones();
+
+        closeMenu()
+
+        generarGaleriaColecciones()
+
+
+        $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
         
-        return false;
-    });  
+        return false
+    })  
 
  
 
     $('.js--scroll--to--nuestraEmpresa').click(function(){
        
-        $('html, body').animate({scrollTop: $('.js--nuestraEmpresa').offset().top}, 1000);
-        return false;
-    });  
+        closeMenu()
+
+        $('html, body').animate({scrollTop: $('.js--nuestraEmpresa').offset().top}, 1000)
+        return false
+    })  
 
 
     $('.js--scroll--to--usuarios').click(function(){
         
-        $('html, body').animate({scrollTop: $('.js--usuarios').offset().top}, 1000);
-        return false;
-    });  
+        closeMenu()
+
+        $('html, body').animate({scrollTop: $('.js--usuarios').offset().top}, 1000)
+        return false
+    })  
 
 
     $('.js--scroll--to--blog').click(function(){
       
-        $('html, body').animate({scrollTop: $('.js--blog').offset().top}, 1000);
-        return false;
-    });  
+        closeMenu()
+
+        $('html, body').animate({scrollTop: $('.js--blog').offset().top}, 1000)
+        return false
+    })  
 
     $('.js--scroll--to--configurador').click(function(){
        
-        $('html, body').animate({scrollTop: $('.js--configurador').offset().top}, 1000);
-        return false;
-    }); 
+        closeMenu()
+
+        $('html, body').animate({scrollTop: $('.js--configurador').offset().top}, 1000)
+        return false
+    }) 
 
     $('.js--scroll--to--contacto').click(function(){
      
-        $('html, body').animate({scrollTop: $('.js--contacto').offset().top}, 1000);
-        return false;
-    });  
+        closeMenu()
+
+        $('html, body').animate({scrollTop: $('.js--contacto').offset().top}, 1000)
+        return false
+    })  
 
     $('.js--scroll--to--header').click(function(){
        
-        $('html, body').animate({scrollTop: $('.js--header').offset().top}, 1000);
-        return false;
-    });  
+        closeMenu()
+        
+        $('html, body').animate({scrollTop: $('.js--header').offset().top}, 1000)
+        return false
+    })  
       
-
-
-   
-
-
 
     /* Mobile navigation */
 
     $('.js--nav--icon').click(function(){
-        $('#icon-nav').toggle();
-        $('#icon-nav-expanded').toggle();
-        $('.navegacion').removeClass('contraido');
-        $('.navegacion').addClass('expandido');
-        return false;
+        $('#icon-nav').toggle()
+        $('#icon-nav-expanded').toggle()
+        $('.navegacion').removeClass('contraido')
+        $('.navegacion').addClass('expandido')
+        return false
         
-    });
+    })
 
     $('.js--nav--icon--exp').click(function(){
-        $('#icon-nav').toggle();
-        $('#icon-nav-expanded').toggle();
-        $('.navegacion').removeClass('expandido');
-        $('.navegacion').addClass('contraido');
-        return false;
-    });
+        $('#icon-nav').toggle()
+        $('#icon-nav-expanded').toggle()
+        closeMenu()
+        return false
+    })
 
+    function closeMenu(){
+        $('.navegacion').removeClass('expandido')
+        $('.navegacion').addClass('contraido')
 
+        if (window.innerWidth >= 1024 )  {
+            $('#icon-nav').hide()
+            $('#icon-nav-expanded').hide()    
+
+        }   else
+        {
+            $('#icon-nav').show()
+            $('#icon-nav-expanded').hide() 
+        }    
+        return false
+    }
 
     //RECALCULAR NUMERO DE COLUMNAS
     //el codigo está manipulado para que solo se 
     //ejecute cuando hemos terminado de cambiar el 
     //tamaño de la ventana (y solo el ancho), no a cada paso
-    var resizeId;
+    var resizeId
 
     $(window).on('resize',function() {
-        return;
-        var new_ww = window.innerWidth;
-        var old_ww = sessionStorage.getItem('old_ww');
+        
+        var new_ww = window.innerWidth
+        var old_ww = sessionStorage.getItem('old_ww')
         
         if (!old_ww || old_ww != new_ww){
            // console.log("colecciones recargadas")
-            sessionStorage.setItem('old_ww', new_ww);
-            clearTimeout(resizeId);
-            resizeId = setTimeout(generarGaleriaColecciones, 500);
+            sessionStorage.setItem('old_ww', new_ww)
+            clearTimeout(resizeId)
+            if (galeriaMostrada=='colecciones'){
+                sessionStorage.setItem('listaColecciones', null)
+                resizeId = setTimeout(generarGaleriaColecciones, 500)
+            } else {
+
+                resizeId = setTimeout(function(){
+                    sessionStorage.setItem('listaImagenes', null)
+
+                    generarDatosColeccion(galeriaMostrada.indice).then(function(response){
+                        generarGaleriaImagenes(galeriaMostrada.coleccion, galeriaMostrada.indice, response) 
+                    })
+                }, 500) 
+            }
+                
         }
 
-    });
+    })
 
 
-    generarGaleriaColecciones();
+    generarGaleriaColecciones()
 
       
-});
+})
         
 
 setTimeout(function(){
     //Saltamos a los productos a los 5 segundos
-    if (userHasScrolled) return false;
-    $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000);
-    return false;
-},5000);    
+    if (userHasScrolled) return false
+    $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
+    return false
+},5000)    
