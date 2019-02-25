@@ -10,6 +10,9 @@ window.onscroll = function (e)
     userHasScrolled = true
 }
 var lang = (navigator.language || navigator.userLanguage).substring(0,2) 
+
+if (lang !=="es" && lang !=='fr' && lang !=='en') lang = 'es'
+
 //console.log (lang)
 
 
@@ -181,6 +184,8 @@ $(document).ready(function(){
 
     }
 
+
+
     function generarDatosColeccion(indice){
         return new Promise( function(resolve, reject){
 
@@ -188,7 +193,7 @@ $(document).ready(function(){
             
             //tenemos los datos. Leemos la plantilla y los mezclamos
             $.ajax({
-                url:  'vistas/coleccion.html',
+                url:  'vistas/coleccion_' + JSONData.mod  + '_' + lang + '.html',
                 success : function(html){
 
                     var html2 = html.replace(/:mod:/g,JSONData.mod)
@@ -196,6 +201,7 @@ $(document).ready(function(){
                                     .replace(/:thn:/g,JSONData.tec_thumbnail ) 
                                     .replace(/:slogan:/g, JSONData.desc[lang])
                                     .replace(/:captions:/g, JSONData.captions[lang])
+                                                                      
 
                     resolve(html2)
                 },
@@ -208,6 +214,10 @@ $(document).ready(function(){
         })
     }
 
+    
+
+    
+    
     function  cargarImagenes(coleccion, indice, htmlParent){
         
         return new Promise(function(resolve, reject){
@@ -287,10 +297,8 @@ $(document).ready(function(){
 
 
                 }
-   
-    
-            }
 
+            }
 
         })
     }
