@@ -1,0 +1,50 @@
+{
+    "thumbnail": "Kepler_tn.jpg",
+    "activa": true,
+    "captions": {
+    "es": "El mundo de las ideas",
+    "en": "The world of ideas",
+    "fr": "Le monde des idées",
+    "_id": "5c5410938a231811016da6ae"
+    },
+    "desc": {
+    "es": "<p>La geometría rige el diseño de la colección con formas inusuales que aportan la suavidad de sus curvas. </p><p>El dominio de la mente sobre la materia.</p>",
+    "en": "<p>The geometry governs the design of the collection with unusual forms that bring the smoothness of their curves.</p><p>The predominance of the mind over matter.</p>",
+    "fr": "<p>La géométrie régit la conception de la collection avec des formes inhabituelles qui apportent la finesse de leurs courbes.</p><p>La prédominance de l'esprit sur la matière.</p>",
+    "_id": "5c5410938a231811016da6af"
+    },
+    "_id": "5c3360645b8ef86aac7fdb31",
+    "tec_thumbnail": "tn_KEPLER (1).JPG",
+    "mod": "kepler",
+    "__v": 0,
+    "tags": {
+    "es": "Tapa de madera y patas metálicas",
+    "fr": "Plateau plaqué en bois. Piétement métallique",
+    "en": "Wooden top. Metal legs"
+    },
+    "Opc": {
+    "es": [
+    {
+    "item": "Acabados Tapa",
+    "list": "<ul><li>Chapas naturales de </li><li></li><ul><li>Nogal Americano</li><li>Roble</li>Roble Nudoso<li></li></ul><li>Lacados</li></ul>",
+    "subitem": ""
+    },
+    {
+    "item": "Acabados Patas",
+    "list": "<ul><li>Acabado Cromo</li><li>Lacado Texturizado Vulcano Roca</li><li>Lacado Texturizado Nieve</li></ul>",
+    "subitem": ""
+    },
+    {
+    "item": "Acabados Aro",
+    "list": "<ul><li>Lacados (SIEMPRE)</li></ul>",
+    "subitem": ""
+    }
+    ]
+    },
+    "Tec": {
+    "es": {
+    "item": "Información técnica",
+    "list": "<ul><li>Sistema de elevacion en acero cromado, con accionamiento asistido (307E)</li><li>Compartimento revistero (307E)</li></ul>"
+    }
+    }
+}    

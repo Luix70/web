@@ -4,10 +4,10 @@
 	 viewBox="0 0 250 141.7" style="enable-background:new 0 0 250 141.7;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#010202;}
-	.st1{font-family:'Avenir-Light';}
+	.st1{font-family:'Raleway', 'Open Sans', sans-serif;}
 	.st2{font-size:28.4092px;}
 	.st3{fill:none;stroke:#010202;stroke-width:0.5;stroke-miterlimit:3.864;}
-	.st4{fill:#FFFFFF;}
+	.st4{fill:rgba(255,255,255,1);}
 </style>
 <text id="XMLID_11_" transform="matrix(1 0 0 1 129.3524 134.9743)" class="st0 st1 st2">65</text>
 <line id="XMLID_10_" class="st3" x1="78.5" y1="104.4" x2="215.3" y2="104.4"/>
