@@ -201,6 +201,7 @@ $(document).ready(function(){
                                     .replace(/:thn:/g,JSONData.tec_thumbnail ) 
                                     .replace(/:slogan:/g, JSONData.desc[lang])
                                     .replace(/:captions:/g, JSONData.captions[lang])
+                                    .replace(/:lang:/g, lang)
                                                                       
 
                     resolve(html2)

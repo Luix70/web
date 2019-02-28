@@ -6792,9 +6792,11 @@ MEDIA QUERIES
 .detalleColeccion__titulo{
         text-align:center;
         font-size:200%;
+        font-weight:200;
         color:navy;
         padding:0;
         margin:0;
+        text-transform:uppercase;
         
     }
 
@@ -6802,7 +6804,7 @@ MEDIA QUERIES
            color: navy; 
            text-align:center;
            font-size:100%;
-           
+           font-weight:400;
            padding:0;
            margin:1rem 0 2rem 0;
         }
@@ -6850,7 +6852,7 @@ MEDIA QUERIES
 
 .modelosColeccion {
     color:navy;
-    padding:1rem 1rem;
+    padding:1rem 1.5rem;
     margin-bottom:1rem;
     font-size:80%;
     font-weight:400;
@@ -6864,9 +6866,21 @@ MEDIA QUERIES
 
 .modelosColeccion h2{
        border-bottom:solid 1px rgba(200 ,200,200,1); 
+       font-size:200%;
+       
        margin-bottom:1rem;
        padding-bottom:1rem;
        text-align:center;
+    }
+
+.modelosColeccion h3{
+        text-align:center;
+        font-size:100%;
+        font-weight:400;
+        color:navy;
+        padding:0;
+        margin-bottom:2rem;
+        text-transform:uppercase;
     }
 
 .modelosColeccion__articulo{
@@ -6879,6 +6893,8 @@ MEDIA QUERIES
         vertical-align:top;
         border-bottom:solid 1px rgba(200 ,200,200,1);
         margin-bottom:1rem;
+        
+        
     }
 
 .modelosColeccion__itemInfo{
@@ -6889,7 +6905,7 @@ MEDIA QUERIES
     }
 
 .modelosColeccion__itemInfo--bold{
-            font-size:110%;
+            font-size:150%;
             font-weight: 800;
         }
 
@@ -6908,9 +6924,19 @@ MEDIA QUERIES
 
 .acabadosColeccion {
     color:navy;
-    padding:1rem 1rem;
+    padding:1rem 0.5rem;
     margin-bottom:1rem;
 }
+
+.acabadosColeccion h3{
+        text-align:center;
+        font-size:100%;
+        font-weight:400;
+        color:navy;
+        padding:0;
+        margin-bottom:2rem;
+        text-transform:uppercase;
+    }
 
 .acabadosColeccion__opciones{
 
@@ -6924,13 +6950,24 @@ MEDIA QUERIES
     }
 
 .acabadosColeccion__opciones-titulo{
-            font-size:150%;
+            font-size:100%;
+            font-weight:400;
             margin-bottom:0.5rem;
+            text-transform:uppercase;
         }
+
+.acabadosColeccion__opciones-titulo .subOpcion{
+                
+                font-size:70%;
+                font-weight:400;
+                display:block;
+            }
 
 .acabadosColeccion__opciones li{
             width:100%;
             margin-bottom:0.5rem;
+            font-weight:400;
+            color:rgba(0,0,0,1);
         }
 
 .acabadosColeccion ul ul{
@@ -6943,11 +6980,24 @@ MEDIA QUERIES
     margin-bottom:1rem;
 }
 
+.tecnicoColeccion h3{
+        text-align:center;
+        font-size:100%;
+        font-weight:400;
+        color:navy;
+        padding:0;
+        margin-bottom:2rem;
+        text-transform:uppercase;
+    }
+
 .tecnicoColeccion li {
         width:100%;
+        font-size:80%;
+        color:rgba(0,0,0,1);
+        font-weight:400;
         clear:both;
         display:inline;
-        margin:1rem 0;
+        margin:0.5rem 0;
     }
 
 .descargasColeccion{
@@ -6957,12 +7007,36 @@ MEDIA QUERIES
 
 }
 
+.descargasColeccion h3{
+        text-align:center;
+        font-size:100%;
+        font-weight:400;
+        color:navy;
+        padding:0;
+        margin-bottom:2rem;
+        text-transform:uppercase;
+    }
+
 .descargasColeccion li {
         width:100%;
         clear:both;
         display:inline;
         margin:0.5rem 0;
+        font-weight:400;
+
+        
     }
+
+.descargasColeccion li a {
+            color:navy;
+            text-decoration:none;
+            cursor:pointer;
+
+        }
+
+.descargasColeccion li a:visited{
+                color:navy;
+            }
 
 @media only screen and (max-width: 1023px){
     .detalleColeccion{
@@ -7095,7 +7169,8 @@ MEDIA QUERIES
         }
             .modelosColeccion__croquis li img {
                 display:block;
-                width:60%;
+                width:auto;
+                height:160px;
                 margin:1rem auto;
             }
 
