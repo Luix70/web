@@ -1,0 +1,194 @@
+
+@import "normalize.css";
+@import "../../../vendors/css/grid.css";
+@import "../../../vendors/css/ionicons.min.css";
+@import "../../../vendors/css/animate.css";
+/* -------------------------------------------------------------
+REGLAS GENÉRICAS
+------------------------------------------------------------- */
+
+
+$colorDescanso:rgba(3, 11, 63, 1);
+$colorTexto:coral;
+$colorParrafo: navy;
+$defaultColor:white;
+$colorNeutro: rgba(100,100,100,1);
+$colorSeparador: rgba(200 ,200,200,1);
+$colorSubOpcion: rgba(0,0,0,1);
+
+
+
+*, *:before, *:after{
+    margin:0;
+    padding:0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+html{
+    background-color: $defaultColor;
+    color:#ddd;
+    /* font-family: 'Open Sans', 'Arial', sans-serif; */
+    font-family: 'Raleway', 'Open Sans', sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    
+}
+
+.body{
+    
+    margin:0;
+    padding:0;
+}
+
+.clearfix{
+    zoom: 1;
+}
+.clearfix:after{
+    content:".";
+    clear: both;
+    display:block;
+    height:0;
+    visibility: hidden;
+
+}
+.row{
+    max-width:1140px;
+    margin: 0 auto;
+    position:relative;
+}
+
+
+.screen{
+  
+    margin:0px 0px;
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding:1px 0px 0px 0px;   
+    position:relative;
+
+    /* min-width: 850px; */
+}
+
+
+
+.screen1{
+    /* background-image:  url('img/drop-of-water.jpg'); */
+    
+    width:100%;
+    height: 100vh;
+    min-width: 350px;
+    min-height: 280px;
+
+    
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto ;
+    height: 100%;
+    overflow:hidden;
+    z-index: -100;
+    
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto ;
+    height: 100%;
+    overflow:hidden;
+
+}
+
+.bottom{
+    position:absolute;
+    bottom:0.5em;
+    left:50%;
+    list-style: none;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    padding:0;
+    color:$colorTexto;
+}
+
+.bottom i:first-of-type{
+    margin-right: 0.5em;
+}
+
+.bottom i:last-of-type{
+    margin-left: 0.5em;
+}
+
+
+.bottom li a:link, .bottom li a:visited{
+    color: $colorTexto;
+    text-decoration: none;
+}
+
+.bottom  li a:hover, .bottom li a:active{
+    color: #ddd;
+    text-decoration: none;
+}
+
+main{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    margin:0,0,0,0;
+    overflow:hidden;
+    padding:2.5%;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.3)), to(rgba(0,0,0,1)));
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,1));
+}
+
+main .logo{
+    width:20%;
+    height: auto;
+    min-width:300px;
+    margin-top:0;
+    margin-left:5%;
+    
+
+}
+
+/* para que funcione el enlace en el logo */
+a.svg {
+    position: relative;
+    display: inline-block; 
+}
+  a.svg:after {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left:0;
+}
+
+
+.hero{
+    font-size: 300%;
+    font-weight: 300;
+    position:absolute;
+    width:90%;
+    text-align: center;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+            transform:translate(-50%, -50%);
+    text-transform: uppercase;
+}
+

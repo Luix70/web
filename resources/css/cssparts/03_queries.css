@@ -1,8 +1,13 @@
+/* ----------------------------------------------
+MEDIA QUERIES
+---------------------------------------------- */
+
 
 @media only screen and (max-width: 1200px){
     #icon-nav-expanded{
         display:none;
     }
+
 
 }
 
@@ -18,11 +23,41 @@
        
     }
 
-    .navegacion li{
-        font-size:80%;
-        font-weight: 500;
-        margin-left:0.5em;
-     }
+   .navegacion {
+        /* display:none; */
+        
+        width:100%;
+        position:fixed;
+        top:0;
+        right:0;
+        bottom:auto;
+        
+        font-size: 150%;
+        font-weight: 200;
+        padding-right: 0.5em;
+        float:right;
+        overflow:hidden;
+        z-index: -1;
+        text-align: right;
+
+        li{
+            display:block;
+            margin-left:1em;
+            margin-top:0.5em;
+            margin-bottom:0.5em;
+
+            a{
+                margin:0;
+            }
+            
+        }
+
+            li:first-child{
+            margin-top:3em;
+            margin-left:1em;
+       
+         }
+    }
 
      main .logo{
         width:25%;
@@ -31,8 +66,17 @@
     
     }
     
+    #icon-nav{
+        display:inline-block;
+        font-size:100%;
+        margin-right:-1.5rem;
+    }
+
     #icon-nav-expanded{
         display:none;
+        font-size:100%;
+        margin-right:-1.5rem;
+        
     }
 
     
@@ -49,51 +93,54 @@
 
     .navegacion {
         /* display:none; */
-        
-        width:50%;
+        width:100%;
+       
         position:fixed;
         top:0;
         right:0;
         bottom:auto;
         
-        font-size: 200%;
+        font-size: 150%;
         font-weight: 200;
         padding-right: 0.5em;
         float:right;
         overflow:hidden;
         z-index: -1;
         text-align: right;
-    }
 
-    .navegacion li{
-        display:block;
-        margin-left:1em;
-        margin-top:0.5em;
-        margin-bottom:0.5em;
-        
-    }
+        li{
+            display:block;
+            margin-left:1em;
+            margin-top:0.5em;
+            margin-bottom:0.5em;
 
-    .navegacion li:first-child{
-        margin-top:3em;
-        margin-left:1em;
+            a{
+                margin:0;
+            }
+            
+        }
+
+            li:first-child{
+            margin-top:3em;
+            margin-left:1em;
        
+         }
     }
 
 
-    .navegacion li a{
-        margin:0;
-        
-    }
 
 
 
     #icon-nav{
         display:inline-block;
+        font-size:100%;
+        margin-right:-1rem;
     }
 
     #icon-nav-expanded{
         display:none;
-        font-size:75%;
+        font-size:100%;
+        margin-right:-1rem;
     }
 }
 
@@ -110,15 +157,21 @@
         padding:0 5%;
     }
 
-    .navegacion {display:block;}
+ 
 
     #icon-nav{
         display:inline-block;
+        font-size:100%;
+        margin-right:0;
+        
     }
 
 
     #icon-nav-expanded{
         display:none;
+        font-size:100%;
+        margin-right:0;
+        
     }
 
     main .logo{
@@ -147,9 +200,9 @@
         top:0;
         right:0;
         bottom:auto;
-        
-        font-size: 250%;
-        font-weight: 200;
+        display:block;
+        font-size: 200%;
+        font-weight: 400;
         
         overflow:hidden;
         float:right;
