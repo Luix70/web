@@ -322,7 +322,7 @@ $(document).ready(function(){
 
 
     var wp1 = new Waypoint({
-        element: document.getElementsByClassName('js--nuestraEmpresa')[0],
+        element: document.getElementsByClassName('js--productos')[0],
         handler: function(direction) {
             
             if (direction =='down'){
