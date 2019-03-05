@@ -48,7 +48,7 @@ $(document).ready(function(){
             } else {
                 $.ajax({
                     //Primero consultamos la api para recuperar las colecciones
-                    url:  'https://indesan.org:3001/colecciones/web',
+                    url:  'https://indesan.com:3001/colecciones/web',
                     success :
                         function (result) {
                         //En caso de éxito, recuperamos la plantilla de cada coleccion
