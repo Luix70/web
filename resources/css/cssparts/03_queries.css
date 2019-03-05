@@ -241,6 +241,11 @@ MEDIA QUERIES
         
     }
 
+    .navegacion{
+        li {
+            margin-bottom:0;
+        }
+    }
     .fullscreen-bg__video {
     
         width: 100vw;

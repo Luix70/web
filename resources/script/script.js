@@ -5,11 +5,27 @@ var galeriaMostrada=''
 
 userHasScrolled = false
 
+var textContent = {
+    motto:{
+        es: "<p>INDESAN ES CALIDAD Y DISEÑO.</p><p>ORIGINALIDAD Y PASIÓN POR LAS COSAS BIEN HECHAS.</p>",
+        en: "<p>INDESAN MEANS QUALITY AND DESIGN.</p><p>ORIGINALITY AND PASSION FOR WELL DONE THINGS.</p>",
+        fr: "<p>INDESAN VEUT DIRE QUALITÉ ET DESIGN.</p><p>ORIGINALITÉ ET PASSION POUR DES CHOSES BIEN FAITES.</p>"
+    },
+
+    menu:{
+        colecciones: {
+            es:"Colecciones",
+            en:"Collections",
+            fr:"Collections"
+        }
+    }
+}
+
 window.onscroll = function (e)
 {
     userHasScrolled = true
 }
-var lang = (navigator.language || navigator.userLanguage).substring(0,2) 
+var lang = (localStorage.getItem('idioma.indesan.com') || sessionStorage.getItem('idioma.indesan.com') || navigator.language || navigator.userLanguage).substring(0,2) 
 
 if (lang !=="es" && lang !=='fr' && lang !=='en') lang = 'es'
 
@@ -17,6 +33,13 @@ if (lang !=="es" && lang !=='fr' && lang !=='en') lang = 'es'
 
 
 $(document).ready(function(){
+
+    function renderTexts(){
+       $('#motto').html(textContent.motto[lang])
+
+       $('.js--scroll--to--colecciones').html(textContent.menu.colecciones[lang])
+       
+    }
 
     function generarGaleriaColecciones(){
         cargarcolecciones().then(function(response){
@@ -322,14 +345,14 @@ $(document).ready(function(){
 
 
     var wp1 = new Waypoint({
-        element: document.getElementsByClassName('js--productos')[0],
+        element: document.getElementsByClassName('js--splash')[0],
         handler: function(direction) {
             
-            if (direction =='down'){
+            //if (direction =='down'){
                 $('nav').removeClass('row').addClass('sticky')
-            }else{
-                $('nav').removeClass('sticky').addClass('row')
-            }
+           // }else{
+           //     $('nav').removeClass('sticky').addClass('row')
+           // }
   
   
         },
@@ -471,7 +494,7 @@ $(document).ready(function(){
 
     })
 
-
+    renderTexts()
     generarGaleriaColecciones()
 
       
@@ -481,6 +504,6 @@ $(document).ready(function(){
 setTimeout(function(){
     //Saltamos a los productos a los 5 segundos
     if (userHasScrolled) return false
-    $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
+    $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 5000)
     return false
 },5000)    

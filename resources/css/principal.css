@@ -6152,8 +6152,8 @@ a.svg:after {
 }
 
 .hero{
-    font-size: 300%;
-    font-weight: 300;
+    font-size: 250%;
+    font-weight: 200;
     position:absolute;
     width:90%;
     text-align: center;
@@ -6163,6 +6163,10 @@ a.svg:after {
             transform:translate(-50%, -50%);
     text-transform: uppercase;
 }
+
+.hero p{
+        margin-bottom:1em;
+    }
 
 .contraido{
     height:0;
@@ -6740,7 +6744,9 @@ MEDIA QUERIES
         height: auto;
         
     }
-
+        .navegacion li {
+            margin-bottom:0;
+        }
     .fullscreen-bg__video {
     
         width: 100vw;
