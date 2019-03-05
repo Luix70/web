@@ -237,7 +237,7 @@ $(document).ready(function(){
 
 
                     $.ajax({
-                        url:  'https://indesan.org:3001/imagenes/' + coleccion,
+                        url:  'https://indesan.com:3001/imagenes/' + coleccion,
                         success : function(imgs){
 
                             var no_columns = 1
