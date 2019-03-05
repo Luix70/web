@@ -18,6 +18,12 @@ var textContent = {
             en:"Collections",
             fr:"Collections"
         }
+    },
+
+    warning:{
+            es:"Esta página se encuentra en proceso de actualizacion. En dias sucesivos se irá incorporando funcionalidad adicional",
+            en:"This page is in the process of being updated. In the next days, additional functionality will be added",
+            fr:"Cette page est en cours de mise à jour. Au cours des jours suivants, des fonctionnalités supplémentaires seront ajoutées"
     }
 }
 
@@ -36,7 +42,7 @@ $(document).ready(function(){
 
     function renderTexts(){
        $('#motto').html(textContent.motto[lang])
-
+       $('.js--warning').html(textContent.warning[lang])
        $('.js--scroll--to--colecciones').html(textContent.menu.colecciones[lang])
        
     }
@@ -504,6 +510,6 @@ $(document).ready(function(){
 setTimeout(function(){
     //Saltamos a los productos a los 5 segundos
     if (userHasScrolled) return false
-    $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 5000)
+    $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
     return false
 },5000)    

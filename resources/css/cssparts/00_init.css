@@ -112,7 +112,10 @@ html{
 
 .bottom{
     position:absolute;
-    bottom:0.5em;
+    text-align:center;
+    font-style:italic;
+    font-size:75%;
+    bottom:10em;
     left:50%;
     list-style: none;
     -webkit-transform: translate(-50%, -50%);
