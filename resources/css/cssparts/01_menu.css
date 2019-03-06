@@ -148,3 +148,8 @@ nav{
     z-index:100;
     
 }
+
+.lang_selected{
+    color:white !important;
+    font-size:120%;
+}
