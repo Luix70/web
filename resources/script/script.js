@@ -44,6 +44,21 @@ $(document).ready(function(){
        $('#motto').html(textContent.motto[lang])
        $('.js--warning').html(textContent.warning[lang])
        $('.js--scroll--to--colecciones').html(textContent.menu.colecciones[lang])
+
+       // señalamos el idioma usado
+       $('.js--lang--fr').removeClass('lang_selected')
+       $('.js--lang--es').removeClass('lang_selected')
+       $('.js--lang--en').removeClass('lang_selected')
+       switch(lang){
+            case 'en':
+                $('.js--lang--en').addClass('lang_selected')
+                break
+            case 'fr':
+                $('.js--lang--fr').addClass('lang_selected')
+                break
+            default:
+                 $('.js--lang--es').addClass('lang_selected')
+       }
        
     }
 
@@ -451,6 +466,34 @@ $(document).ready(function(){
         return false
     })
 
+    //Menu idiomas
+
+    $('.js--lang--es').click(function(){
+        $('.js--lang--es').addClass('lang_selected')
+        $('.js--lang--fr').removeClass('lang_selected')
+        $('.js--lang--en').removeClass('lang_selected')
+        sessionStorage.setItem('idioma.indesan.com', 'es-es') 
+        location.reload()
+    })
+
+    $('.js--lang--fr').click(function(){
+        $('.js--lang--fr').addClass('lang_selected')
+        $('.js--lang--es').removeClass('lang_selected')
+        $('.js--lang--en').removeClass('lang_selected')
+        sessionStorage.setItem('idioma.indesan.com', 'fr-fr')  
+        location.reload()
+    })
+
+    $('.js--lang--en').click(function(){
+        $('.js--lang--en').addClass('lang_selected')
+        $('.js--lang--fr').removeClass('lang_selected')
+        $('.js--lang--es').removeClass('lang_selected')
+        sessionStorage.setItem('idioma.indesan.com', 'en-en') 
+        location.reload()
+    })
+
+
+
     function closeMenu(){
         $('.navegacion').removeClass('expandido')
         $('.navegacion').addClass('contraido')
@@ -466,6 +509,8 @@ $(document).ready(function(){
         }    
         return false
     }
+
+
 
     //RECALCULAR NUMERO DE COLUMNAS
     //el codigo está manipulado para que solo se 
@@ -493,16 +538,14 @@ $(document).ready(function(){
                     generarDatosColeccion(galeriaMostrada.indice).then(function(response){
                         generarGaleriaImagenes(galeriaMostrada.coleccion, galeriaMostrada.indice, response) 
                     })
+
                 }, 500) 
             }
-                
         }
-
     })
 
     renderTexts()
     generarGaleriaColecciones()
-
       
 })
         
@@ -510,6 +553,9 @@ $(document).ready(function(){
 setTimeout(function(){
     //Saltamos a los productos a los 5 segundos
     if (userHasScrolled) return false
+    
+
     $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
+
     return false
 },5000)    
