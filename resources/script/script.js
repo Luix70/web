@@ -65,7 +65,9 @@ $(document).ready(function(){
     function generarGaleriaColecciones(){
         cargarcolecciones().then(function(response){
             asignarComportamientosColecciones()
-            $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
+            userHasScrolled=false //para que se mueva al comienzo de la galeria
+            setTimeout(scroll, 2000)
+            
         })
 
        
@@ -74,7 +76,8 @@ $(document).ready(function(){
 
         cargarImagenes(coleccion, index, html).then(function(response){
             asignarComportamientosImagenes()
-            $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
+            userHasScrolled=false //para que se mueva al comienzo de la galeria
+            setTimeout(scroll, 2000)
         })
         
     }
@@ -390,8 +393,7 @@ $(document).ready(function(){
         generarGaleriaColecciones()
 
 
-        $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
-        
+       
         return false
     })  
 
@@ -546,16 +548,22 @@ $(document).ready(function(){
 
     renderTexts()
     generarGaleriaColecciones()
+
+    function scroll(){
+        //Saltamos a los productos a los 5 segundos
+        
+        if (userHasScrolled) return false
+        
+    
+        $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
+    
+        return false
+    }  
+
+
+    setTimeout(scroll, 5000);
       
 })
         
 
-setTimeout(function(){
-    //Saltamos a los productos a los 5 segundos
-    if (userHasScrolled) return false
-    
-
-    $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
-
-    return false
-},5000)    
+ 
