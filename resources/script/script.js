@@ -76,8 +76,7 @@ $(document).ready(function(){
 
         cargarImagenes(coleccion, index, html).then(function(response){
             asignarComportamientosImagenes()
-            userHasScrolled=false //para que se mueva al comienzo de la galeria
-            setTimeout(scroll, 2000)
+            $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
         })
         
     }
@@ -199,6 +198,7 @@ $(document).ready(function(){
                 var indice = this.dataset.colindex
                 generarDatosColeccion(indice).then(function(response){
                     generarGaleriaImagenes(coleccion, indice, response) 
+
                 })
                 
             })
@@ -392,8 +392,7 @@ $(document).ready(function(){
 
         generarGaleriaColecciones()
 
-
-       
+      
         return false
     })  
 
