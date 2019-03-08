@@ -76,7 +76,7 @@ $(document).ready(function(){
 
         cargarImagenes(coleccion, index, html).then(function(response){
             asignarComportamientosImagenes()
-            $('html, body').animate({scrollTop: $('.js--productos').offset().top-50}, 1000)
+            $('html, body').animate({scrollTop: $('.js--productos').offset().top-80}, 1000)
         })
         
     }
@@ -532,12 +532,12 @@ $(document).ready(function(){
                 sessionStorage.setItem('listaColecciones', null)
                 resizeId = setTimeout(generarGaleriaColecciones, 500)
             } else {
-
+                return //no redimensionamos
                 resizeId = setTimeout(function(){
                     sessionStorage.setItem('listaImagenes', null)
 
                     generarDatosColeccion(galeriaMostrada.indice).then(function(response){
-                        generarGaleriaImagenes(galeriaMostrada.coleccion, galeriaMostrada.indice, response) 
+                    generarGaleriaImagenes(galeriaMostrada.coleccion, galeriaMostrada.indice, response) 
                     })
 
                 }, 500) 
