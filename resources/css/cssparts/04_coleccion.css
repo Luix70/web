@@ -74,6 +74,12 @@
     font-size:80%;
     font-weight:400;
     vertical-align:top;
+    
+    .noline{
+ 
+        border-bottom:none; 
+
+    }
 
     h2{
        font-size:200%;
@@ -99,8 +105,10 @@
         height:auto;
         width:100%;
         vertical-align:top;
-
+        border-bottom:solid 1px $colorNeutro;
         margin-bottom:1rem;
+
+
 
     }
 
@@ -291,7 +299,7 @@
         
         
       li {
-        width:50%;  
+        width:33%;  
         img{
             width:auto;
             max-height:80px;
@@ -302,8 +310,8 @@
       }
 
             li:hover img{
-                -webkit-transform:scale(0.9);
-                        transform:scale(0.9);
+                -webkit-transform:scale(1);
+                        transform:scale(1);
             }    
 
         }
@@ -398,7 +406,7 @@
         
         li {
 
-            width:50%;
+            width:33%;
             img {
                 display:block;
                 width:auto;
@@ -461,7 +469,27 @@
             &--bold{
                 font-size:100%;
             }
-        }   
+        }  
+        
+        &__croquis{
+        
+            li {
+
+                width:100%;
+                img {
+                    display:block;
+                    width:auto;
+                    max-height:100px;
+                    margin:0.25rem auto;
+                }
+                
+    
+            }
+
+        }
+         
     }
+
+   
 
 }
