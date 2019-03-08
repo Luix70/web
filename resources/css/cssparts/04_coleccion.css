@@ -238,8 +238,8 @@
 .descargasColeccion{
     color:$colorParrafo;
     padding:1rem 1rem;
-    margin-bottom:1rem;
-
+  
+    background-color:white;
     
     h3{
         text-align:center;
