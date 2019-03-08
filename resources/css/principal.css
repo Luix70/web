@@ -6894,7 +6894,7 @@ MEDIA QUERIES
 }
 
 .modelosColeccion h2{
-       border-bottom:solid 1px rgba(200 ,200,200,1); 
+       
        font-size:200%;
        
        margin-bottom:1rem;
@@ -6915,16 +6915,26 @@ MEDIA QUERIES
 .modelosColeccion__articulo{
         display:block;
         text-align:left;
-        height:100px;
-        overflow:hidden;
-        height:100px;
+        height:auto;
+        
+        
         width:100%;
         vertical-align:top;
         border-bottom:solid 1px rgba(200 ,200,200,1);
+        border-top:solid 1px rgba(200 ,200,200,1);
         margin-bottom:1rem;
         
         
     }
+
+.modelosColeccion__video{
+
+        margin-bottom:3rem;
+    }
+
+.modelosColeccion__video h3 {
+            margin-top:1rem;
+        }
 
 .modelosColeccion__itemInfo{
         display:inline-block;
@@ -6941,7 +6951,7 @@ MEDIA QUERIES
 .modelosColeccion__croquis li img{
         
         width:auto;
-        
+        max-height:100px;
         -webkit-transform:scale(1);
                 transform:scale(1);
       }
@@ -7032,7 +7042,8 @@ MEDIA QUERIES
 .descargasColeccion{
     color:navy;
     padding:1rem 1rem;
-    margin-bottom:1rem;
+  
+    background-color:white;
 
 }
 
@@ -7174,9 +7185,6 @@ MEDIA QUERIES
             width:20%;
         }
 
-        .modelosColeccion .span-4-of-12{
-            width:80%;
-        }
 
         .modelosColeccion .span-4-of-12{
             width:100%;
@@ -7190,8 +7198,7 @@ MEDIA QUERIES
         }
         
         .modelosColeccion__croquis li {
-            
-            
+
             width:100%;
             
    
@@ -7199,7 +7206,7 @@ MEDIA QUERIES
             .modelosColeccion__croquis li img {
                 display:block;
                 width:auto;
-                height:160px;
+                max-height:200px;
                 margin:1rem auto;
             }
 
