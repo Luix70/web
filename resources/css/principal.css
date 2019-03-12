@@ -6364,6 +6364,13 @@ SECCION PRODUCTOS
     
 }
 
+.faded{
+    
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+
+}
+
 .galeria figcaption{
     position:absolute;
     color: coral;
@@ -6931,7 +6938,7 @@ MEDIA QUERIES
 
 .modelosColeccion__video{
 
-        margin-bottom:3rem;
+        margin:3rem 0;
     }
 
 .modelosColeccion__video h3 {
