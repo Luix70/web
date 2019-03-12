@@ -122,12 +122,15 @@ $(document).ready(function(){
                                 result.forEach((element, index) => {
                                     //console.log(index)
                                     
+
                                     var item= new String(html)
+                                    var estadocoleccion = (element.tec_thumbnail ? "completada":"faded" )
                                     ihtml += item.replace(/:thumb:/g , element.thumbnail).
                                                     replace(/:mod:/g, element.mod).
                                                     replace(/:caption:/g, element.captions[lang]).
                                                     replace(/:description:/g, element.desc[lang]).
-                                                    replace(/:index:/g, index)
+                                                    replace(/:index:/g, index).
+                                                    replace(/:estado:/g, estadocoleccion)
         
                                     //vemos si hay que insertar un descanso en la galeria
                                     itemsProcesados += 1
