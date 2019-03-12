@@ -6900,7 +6900,7 @@ MEDIA QUERIES
     }
 
 .modelosColeccion h2{
-       font-size:200%;
+       font-size:150%;
        margin-bottom:1rem;
        padding-bottom:1rem;
        text-align:center;
@@ -7092,8 +7092,12 @@ MEDIA QUERIES
         
         .detalleColeccion__hero {
         
-         font-size: 125%;
+         font-size: 120%;
        
+        }
+
+        .detalleColeccion .span-8-of-12{
+            width:50%;
         }
 
 
@@ -7122,7 +7126,7 @@ MEDIA QUERIES
  }
 
 @media only screen and (max-width: 767px){
-
+ 
     .detalleColeccion {
 
     
@@ -7184,6 +7188,9 @@ MEDIA QUERIES
 
     }
       
+        .modelosColeccion h2{
+            font-size:120%;
+        }
 
          .modelosColeccion__articulo{
             
