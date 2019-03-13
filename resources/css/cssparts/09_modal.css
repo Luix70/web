@@ -1,0 +1,61 @@
+.modal{
+    position:fixed;
+    background-color:rgba(0 ,0,0,1);
+    z-index:105;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+
+    img{
+        width:100%;
+        height:auto;
+        position:absolute;
+        top:50%;
+        transform: translate(0, -50%);
+    }
+
+
+    &__control{
+        position:absolute;
+        z-index:110;
+        width:1.5em;
+        height:1em;
+
+        font-size:150%;
+        border-radius:0.5em;
+        color:$colorTexto;
+        background-color:rgba(50,50,50,0.8);
+        text-align:center;
+        display:inline-block;
+        padding:0;
+        margin:0;
+
+        &-close{
+            top:0.5rem;
+            right:0.5rem;
+        }
+
+        &-next{
+            top:50%;
+            right:0.5rem;
+            transform: translate(0, -50%);
+        }
+
+
+        &-previous{
+            top:50%;
+            left:0.5rem;
+            transform: translate(0, -50%);
+        }
+
+    }
+
+    
+
+
+
+
+
+
+}

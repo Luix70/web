@@ -7281,3 +7281,66 @@ MEDIA QUERIES
    
 
 }
+
+.modal{
+    position:fixed;
+    background-color:rgba(0 ,0,0,1);
+    z-index:105;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+
+    
+
+
+
+
+
+
+}
+
+.modal img{
+        width:100%;
+        height:auto;
+        position:absolute;
+        top:50%;
+        -webkit-transform: translate(0, -50%);
+                transform: translate(0, -50%);
+    }
+
+.modal__control{
+        position:absolute;
+        z-index:110;
+        width:1.5em;
+        height:1em;
+
+        font-size:150%;
+        border-radius:0.5em;
+        color:coral;
+        background-color:rgba(50,50,50,0.8);
+        text-align:center;
+        display:inline-block;
+        padding:0;
+        margin:0;
+
+    }
+
+.modal__control-close{
+            top:0.5rem;
+            right:0.5rem;
+        }
+
+.modal__control-next{
+            top:50%;
+            right:0.5rem;
+            -webkit-transform: translate(0, -50%);
+                    transform: translate(0, -50%);
+        }
+
+.modal__control-previous{
+            top:50%;
+            left:0.5rem;
+            -webkit-transform: translate(0, -50%);
+                    transform: translate(0, -50%);
+        }
