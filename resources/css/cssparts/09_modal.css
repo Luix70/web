@@ -6,7 +6,8 @@
     bottom:0;
     left:0;
     right:0;
-
+    opacity:1;
+    transition: all 1s ease-out;
     img{
         width:100%;
         height:auto;
@@ -51,11 +52,22 @@
 
     }
 
-    
-
-
-
-
-
-
+    &.noshow{
+        visibility:hidden;
+        opacity:0;
+    }
 }
+
+
+@media only screen and (min-aspect-ratio: 16/9){
+    .modal{
+        img{
+            height:100%;
+            width:auto;
+            left:50%;
+            top:50;
+            transform:translate(-50%,-50%);
+        }
+    }
+}
+

@@ -359,9 +359,17 @@ $(document).ready(function(){
                 generarGaleriaColecciones()
                 
             })
-
-            
         })
+
+
+
+        $('.galeria li .ion-camera').each(function(index){
+            $(this).click(function(){
+                $('.modal').removeClass('noshow')
+                
+            })
+        })
+        
 
         $('.galeria li').each(function(index){
              $(this).mouseenter(aseguraVisible)
@@ -562,7 +570,27 @@ $(document).ready(function(){
         return false
     }  
 
+    function comportamientoBotonesModal(){
+        $('.modal__control-close').click(function(e){
+            $('.modal').addClass('noshow')
+            e.preventDefault? e.preventDefault() : e.returnValue = false; 
+        })
 
+        $('.modal__control-next').click(function(e){
+
+            console.log('cicle to the next picture')
+
+            e.preventDefault? e.preventDefault() : e.returnValue = false;
+            
+        })
+
+
+        $('.modal__control-previous').click(function(e){
+            console.log('cicle to the previous picture')
+            e.preventDefault? e.preventDefault() : e.returnValue = false;
+        })
+    }
+    comportamientoBotonesModal();
     setTimeout(scroll, 5000);
       
 })

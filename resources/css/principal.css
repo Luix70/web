@@ -7290,14 +7290,8 @@ MEDIA QUERIES
     bottom:0;
     left:0;
     right:0;
-
-    
-
-
-
-
-
-
+    opacity:1;
+    transition: all 1s ease-out;
 }
 
 .modal img{
@@ -7344,3 +7338,20 @@ MEDIA QUERIES
             -webkit-transform: translate(0, -50%);
                     transform: translate(0, -50%);
         }
+
+.modal.noshow{
+        visibility:hidden;
+        opacity:0;
+    }
+
+@media only screen and (min-aspect-ratio: 16/9){
+        .modal img{
+            height:100%;
+            width:auto;
+            left:50%;
+            top:50;
+            -webkit-transform:translate(-50%,-50%);
+                    transform:translate(-50%,-50%);
+        }
+}
+
