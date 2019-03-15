@@ -196,7 +196,7 @@ $(document).ready(function(){
         })
 
         //
-        $('.galeria li .detalleFigura').each(function(index){
+        $('.galeria li .ion-camera').each(function(index){
             $(this).click(function(){
                 var coleccion = this.dataset.coleccion
                 var indice = this.dataset.colindex
@@ -388,12 +388,12 @@ $(document).ready(function(){
    function abrirModal(picIndex){
     $('#galeriaModal li').each(function(index){
         if (index == picIndex){$(this).addClass('imagenActiva')}else{$(this).removeClass('imagenActiva')}
-        console.log(index)
+        //console.log(index)
     })
 
     $('.modal').removeClass('noshow')
 
-    console.log("abrimos la galeria por la imagen " + picIndex)
+   // console.log("abrimos la galeria por la imagen " + picIndex)
    }
 
 

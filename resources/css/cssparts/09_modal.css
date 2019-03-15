@@ -3,17 +3,22 @@
     background-color:rgba(0 ,0,0,1);
     z-index:105;
     top:0;
-    bottom:0;
+    bottom:-60px;
     left:0;
     right:0;
     opacity:1;
     transition: all 0.3s ease-out;
-    img{
+    .picContainer{
         width:100%;
         height:auto;
         position:absolute;
         top:50%;
         transform: translate(0, -50%);
+        img {
+            width:100%;
+            height:auto;
+            margin-bottom:-5px;
+        }
     }
 
 
@@ -70,6 +75,36 @@
     &.imagenActiva{
         display:inline-block;
     }
+
+    .detalleFigura{
+        height:5%;
+        min-height:2rem;
+        -webkit-transition: height 0.5s;
+        transition: height 0.5s;
+
+   
+    }
+
+     .detalleFigura:hover{
+    
+        left:0;
+        height:20%;
+        min-height:5rem;
+        cursor:pointer;
+    }
+
+    i {
+        display:none;
+    }
+
+    .detalleFiguraSubt{
+    /* font-style: italic; */
+    font-size:1.1rem;
+    font-weight: 400;
+    margin-bottom:1rem;
+    text-transform:uppercase; 
+}
+
 }
 
 
