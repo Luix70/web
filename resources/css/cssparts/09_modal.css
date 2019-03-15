@@ -3,7 +3,7 @@
     background-color:rgba(0 ,0,0,1);
     z-index:105;
     top:0;
-    bottom:-60px;
+    bottom:0;
     left:0;
     right:0;
     opacity:1;
@@ -107,21 +107,27 @@
 
 }
 
-
-    
-
-
-
-
 @media only screen and (min-aspect-ratio: 16/9){
     .modal{
-        img{
-            height:100%;
-            width:auto;
-            left:50%;
-            top:50;
-            transform:translate(-50%,-50%);
+        bottom:0px;
+        .picContainer{
+        width:100vw;
+        height:100vh;
+        position:absolute;
+        text-align:center;
+  
+            img {
+                width:auto;
+                height:100vh;
+                margin-bottom:-5px;
+            }
         }
+
     }
-}
+}   
+
+
+
+
+
 
