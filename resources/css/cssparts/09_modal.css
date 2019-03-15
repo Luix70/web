@@ -7,7 +7,7 @@
     left:0;
     right:0;
     opacity:1;
-    transition: all 1s ease-out;
+    transition: all 0.3s ease-out;
     img{
         width:100%;
         height:auto;
@@ -57,6 +57,25 @@
         opacity:0;
     }
 }
+
+
+
+
+
+#galeriaModal li{
+
+    transition: all 0.3s ease-out;
+    display:none;
+
+    &.imagenActiva{
+        display:inline-block;
+    }
+}
+
+
+    
+
+
 
 
 @media only screen and (min-aspect-ratio: 16/9){
