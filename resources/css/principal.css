@@ -6094,7 +6094,7 @@ html{
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     padding:0;
-    color:coral;
+    color:rgba(255,155,100,1);
 }
 
 .bottom i:first-of-type{
@@ -6106,7 +6106,7 @@ html{
 }
 
 .bottom li a:link, .bottom li a:visited{
-    color: coral;
+    color: rgba(255,155,100,1);
     text-decoration: none;
 }
 
@@ -6222,7 +6222,7 @@ a.svg:after {
 
 .navegacion a:link, .navegacion  a:visited{
     
-    color: coral;
+    color: rgba(255,155,100,1);
 }
 
 .navegacion  a:hover, .navegacion  a:active{
@@ -6248,7 +6248,7 @@ a.svg:after {
 
 #icon-nav  a:link, #icon-nav  a:visited{
     
-    color: coral;
+    color: rgba(255,155,100,1);
 }
 
 #icon-nav  a:hover, #icon-nav  a:active{
@@ -6274,7 +6274,7 @@ a.svg:after {
 
 #icon-nav-expanded  a:link, #icon-nav-expanded  a:visited{
     
-    color: coral;
+    color: rgba(255,155,100,1);
 }
 
 #icon-nav-expanded  a:hover, #icon-nav-expanded  a:active{
@@ -6373,7 +6373,7 @@ SECCION PRODUCTOS
 
 .galeria figcaption{
     position:absolute;
-    color: coral;
+    color: rgba(255,155,100,1);
     top:25%;
     left:50%;
     font-size:250%;
@@ -6714,7 +6714,7 @@ MEDIA QUERIES
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     padding:0;
-    color:coral;
+    color:rgba(255,155,100,1);
 }
 
 }
@@ -7356,7 +7356,7 @@ MEDIA QUERIES
 
         font-size:150%;
         border-radius:0.5em;
-        color:coral;
+        color:rgba(255,155,100,1);
         background-color:rgba(50,50,50,0.8);
         text-align:center;
         display:inline-block;
