@@ -2,6 +2,7 @@ sessionStorage.setItem('listaColecciones', 'null')
 sessionStorage.setItem('listaImagenes', 'null')
 sessionStorage.setItem('JSONListaColecciones', 'null')
 var galeriaMostrada=''
+var JSONListaImagenes=''
 
 userHasScrolled = false
 
@@ -195,7 +196,7 @@ $(document).ready(function(){
         })
 
         //
-        $('.galeria li .detalleFigura').each(function(index){
+        $('.galeria li .ion-camera').each(function(index){
             $(this).click(function(){
                 var coleccion = this.dataset.coleccion
                 var indice = this.dataset.colindex
@@ -281,6 +282,7 @@ $(document).ready(function(){
                 if (!(listaImagenes == "null")){
                     //console.log("listaImagenes recuperada")
                     document.getElementById("listaColecciones").innerHTML = listaImagenes
+                    JSONListaImagenes=sessionStorage.getItem('JSONListaImagenes')
                     resolve('ok')
                 } else {
 
@@ -289,7 +291,8 @@ $(document).ready(function(){
                     $.ajax({
                         url:  'https://indesan.com:3001/imagenes/' + coleccion,
                         success : function(imgs){
-
+                            JSONListaImagenes = imgs
+                            sessionStorage.setItem('JSONListaImagenes',JSON.stringify(JSONListaImagenes))
                             var no_columns = 1
                             if (window.innerWidth >= 480 ) no_columns=2
                             if (window.innerWidth >= 768 ) no_columns=3
@@ -305,33 +308,36 @@ $(document).ready(function(){
         
         
                                     //la
-                                    var ihtml=""
+                                    var ihtml=''
+                                    var ihtml2='' //para la galeria modal
                                     var galeria = document.getElementById("listaColecciones")
                                     var itemsProcesados =0
                                     var itemsDescanso = Math.floor(imgs.length / (no_descansos + 1))
-
+                                    
                                     imgs.forEach((element, index) => {
-                                        ihtml += html.
-                                                    replace(/:thumb:/g, element.folder + "/" + element.nombre_tn).
-                                                    replace(/:img:/g, element.folder + "/" + element.nombre_img).
+
+                                        var fotoProcesada= html.
                                                     replace(/:caption:/g, element.pieFoto[lang]).
                                                     replace(/:alt:/g, element.pieFoto[lang]).
                                                     replace(/:description:/g, element.pieFoto[lang]).
-                                                    replace(/:mod:/g, coleccion)
+                                                    replace(/:mod:/g, coleccion).
+                                                    replace(/:index:/g, index)
 
+                                        ihtml += fotoProcesada.replace(/:img:/g, element.folder + "/" + element.nombre_tn)
+                                        ihtml2 += fotoProcesada.replace(/:img:/g, element.folder + "/" + element.nombre_img)
 
-                                                    //vemos si hay que insertar un descanso en la galeria
-                                                    itemsProcesados += 1
-                                                    if (itemsProcesados > itemsDescanso){
-                                                        itemsProcesados=0
-                                                        ihtml += htmlDescanso.replace(/:no_descanso:/, Math.round(index / (no_descansos+1)))
-                                                    }
-                                                   
+                                        //vemos si hay que insertar un descanso en la galeria
+                                        itemsProcesados += 1
+                                        if (itemsProcesados > itemsDescanso){
+                                            itemsProcesados=0
+                                            ihtml += htmlDescanso.replace(/:no_descanso:/, Math.round(index / (no_descansos+1)))
+                                        }
+            
         
                                     })
                                     
                                     htmlParent = htmlParent.replace(':galeria:', ihtml)
-        
+                                    document.getElementById('galeriaModal').innerHTML=ihtml2
                                     sessionStorage.setItem('listaImagenes', htmlParent)
                                     galeria.innerHTML=htmlParent
                                     
@@ -359,9 +365,18 @@ $(document).ready(function(){
                 generarGaleriaColecciones()
                 
             })
-
-            
         })
+
+
+
+        $('.galeria li .ion-camera').each(function(index){
+            $(this).click(function(){
+                var picIndex=0
+                abrirModal(this.dataset.pictureindex)
+                
+            })
+        })
+        
 
         $('.galeria li').each(function(index){
              $(this).mouseenter(aseguraVisible)
@@ -369,6 +384,19 @@ $(document).ready(function(){
         })
    }
     
+
+   function abrirModal(picIndex){
+    $('#galeriaModal li').each(function(index){
+        if (index == picIndex){$(this).addClass('imagenActiva')}else{$(this).removeClass('imagenActiva')}
+        //console.log(index)
+    })
+
+    $('.modal').removeClass('noshow')
+
+   // console.log("abrimos la galeria por la imagen " + picIndex)
+   }
+
+
 
 
     var wp1 = new Waypoint({
@@ -535,15 +563,15 @@ $(document).ready(function(){
                 sessionStorage.setItem('listaColecciones', null)
                 resizeId = setTimeout(generarGaleriaColecciones, 500)
             } else {
-                return //no redimensionamos
-                resizeId = setTimeout(function(){
-                    sessionStorage.setItem('listaImagenes', null)
+                
+                // resizeId = setTimeout(function(){
+                //     sessionStorage.setItem('listaImagenes', null)
 
-                    generarDatosColeccion(galeriaMostrada.indice).then(function(response){
-                    generarGaleriaImagenes(galeriaMostrada.coleccion, galeriaMostrada.indice, response) 
-                    })
+                //     generarDatosColeccion(galeriaMostrada.indice).then(function(response){
+                //     generarGaleriaImagenes(galeriaMostrada.coleccion, galeriaMostrada.indice, response) 
+                //     })
 
-                }, 500) 
+                // }, 500) 
             }
         }
     })
@@ -562,7 +590,57 @@ $(document).ready(function(){
         return false
     }  
 
+    function comportamientoBotonesModal(){
+        $('.modal__control-close').click(function(e){
+            $('.modal').addClass('noshow')
+            e.preventDefault? e.preventDefault() : e.returnValue = false; 
+        })
 
+        $('.modal__control-next').click(function(e){
+
+         
+            //vemsos cuantas imagenes tenemos en la galeria
+            var nIm = $('#galeriaModal li').length
+            //vemos cual es la que esta visible
+            var imActiva = $('#galeriaModal li.imagenActiva').data('pictureindex')
+            
+            //le quitamos el atributo a la actual:
+            $('#galeriaModal li.imagenActiva').removeClass('imagenActiva')
+            //la proxima ha de ser:
+
+            imActiva = (imActiva + 1 ) % nIm
+            
+
+            //y se lo ponemos a la siguiente
+            
+            $('#galeriaModal li').eq(imActiva).addClass('imagenActiva')
+
+            e.preventDefault? e.preventDefault() : e.returnValue = false;
+            
+        })
+
+
+        $('.modal__control-previous').click(function(e){
+            //vemsos cuantas imagenes tenemos en la galeria
+            var nIm = $('#galeriaModal li').length
+            //vemos cual es la que esta visible
+            var imActiva = $('#galeriaModal li.imagenActiva').data('pictureindex')
+            
+            //le quitamos el atributo a la actual:
+            $('#galeriaModal li.imagenActiva').removeClass('imagenActiva')
+            //la proxima ha de ser:
+
+            imActiva = (imActiva - 1 ) % nIm
+            
+
+            //y se lo ponemos a la siguiente
+            
+            $('#galeriaModal li').eq(imActiva).addClass('imagenActiva')
+
+            e.preventDefault? e.preventDefault() : e.returnValue = false;
+        })
+    }
+    comportamientoBotonesModal();
     setTimeout(scroll, 5000);
       
 })

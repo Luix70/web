@@ -1,0 +1,133 @@
+.modal{
+    position:fixed;
+    background-color:rgba(0 ,0,0,1);
+    z-index:105;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    opacity:1;
+    transition: all 0.3s ease-out;
+    .picContainer{
+        width:100%;
+        height:auto;
+        position:absolute;
+        top:50%;
+        transform: translate(0, -50%);
+        img {
+            width:100%;
+            height:auto;
+            margin-bottom:-5px;
+        }
+    }
+
+
+    &__control{
+        position:absolute;
+        z-index:110;
+        width:1.5em;
+        height:1em;
+
+        font-size:150%;
+        border-radius:0.5em;
+        color:$colorTexto;
+        background-color:rgba(50,50,50,0.8);
+        text-align:center;
+        display:inline-block;
+        padding:0;
+        margin:0;
+
+        &-close{
+            top:0.5rem;
+            right:0.5rem;
+        }
+
+        &-next{
+            top:50%;
+            right:0.5rem;
+            transform: translate(0, -50%);
+        }
+
+
+        &-previous{
+            top:50%;
+            left:0.5rem;
+            transform: translate(0, -50%);
+        }
+
+    }
+
+    &.noshow{
+        visibility:hidden;
+        opacity:0;
+    }
+}
+
+
+
+
+
+#galeriaModal li{
+
+    transition: all 0.3s ease-out;
+    display:none;
+
+    &.imagenActiva{
+        display:inline-block;
+    }
+
+    .detalleFigura{
+        height:5%;
+        min-height:2rem;
+        -webkit-transition: height 0.5s;
+        transition: height 0.5s;
+
+   
+    }
+
+     .detalleFigura:hover{
+    
+        left:0;
+        height:20%;
+        min-height:5rem;
+        cursor:pointer;
+    }
+
+    i {
+        display:none;
+    }
+
+    .detalleFiguraSubt{
+    /* font-style: italic; */
+    font-size:1.1rem;
+    font-weight: 400;
+    margin-bottom:1rem;
+    text-transform:uppercase; 
+}
+
+}
+
+@media only screen and (min-aspect-ratio: 16/9){
+    .modal{
+        bottom:0px;
+        .picContainer{
+        width:100vw;
+        height:100vh;
+        position:absolute;
+        text-align:center;
+  
+            img {
+                width:auto;
+                height:100vh;
+                margin-bottom:-5px;
+            }
+        }
+
+    }
+}   
+
+
+
+
+
+
