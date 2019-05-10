@@ -6428,6 +6428,8 @@ SECCION PRODUCTOS
     padding-top:0.25rem;
     margin-bottom:2rem;
     text-transform:uppercase; 
+
+
 }
 
 .detalleFiguraText{
@@ -6467,6 +6469,10 @@ SECCION PRODUCTOS
     cursor:pointer;
    
 }
+
+.detalleFigura i .ion-ios-arrow {
+
+    }
 
 .detalleFigura .ion-camera{
     font-size:150%;
@@ -7094,7 +7100,7 @@ MEDIA QUERIES
 .descargasColeccion{
     color:navy;
     padding:1rem 1rem;
-  
+    visibility:hidden;
     background-color:white;
 
 }
@@ -7283,6 +7289,7 @@ MEDIA QUERIES
 
     .descargasColeccion{
         font-size:80%;
+        visibility:hidden;
     }
 }
 
@@ -7404,6 +7411,7 @@ MEDIA QUERIES
         height:5%;
         min-height:2rem;
         transition: height 0.5s;
+        overflow:visible;
 
    
     }
@@ -7418,6 +7426,24 @@ MEDIA QUERIES
 
 #galeriaModal li i {
         display:none;
+    }
+
+#galeriaModal li .detalleFigura i.ion-ios-arrow {
+        font-size:250%;
+        position:absolute;
+        top:0;
+        left:50%;
+        -webkit-transform:translate(0,-80%);
+                transform:translate(0,-80%);
+        
+        color:rgba(255,155,100,1);
+        padding:0rem 1.5rem 0 1.5rem;
+        margin-bottom:1rem;
+        line-height:2rem;
+        border-radius:1.5rem;
+        display:block;
+
+    
     }
 
 #galeriaModal li .detalleFiguraSubt{

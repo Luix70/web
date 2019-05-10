@@ -242,7 +242,7 @@
 .descargasColeccion{
     color:$colorParrafo;
     padding:1rem 1rem;
-  
+    visibility:hidden;
     background-color:white;
     
     h3{
@@ -446,10 +446,9 @@
 
     .descargasColeccion{
         font-size:80%;
+        visibility:hidden;
     }
 }
-
-
 
 
 
