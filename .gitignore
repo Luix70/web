@@ -44,7 +44,7 @@
 # -----------------------------------------------------------------
 
 # ignore all files starting with . or ~
-.*
+
 ~*
 
 # ignore all files ending with .tif
@@ -103,6 +103,7 @@ Thumbs.db
 !.gitignore
 !.editorconfig
 !.phpcs.xml.dist
+
 
 # Logs
 logs
@@ -184,3 +185,4 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
