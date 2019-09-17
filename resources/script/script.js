@@ -25,6 +25,12 @@ var textContent = {
             es:"Esta página se encuentra en proceso de actualizacion. En dias sucesivos se irá incorporando funcionalidad adicional",
             en:"This page is in the process of being updated. In the next days, additional functionality will be added",
             fr:"Cette page est en cours de mise à jour. Au cours des jours suivants, des fonctionnalités supplémentaires seront ajoutées"
+    },
+
+    area:{
+        es:"Área Usuarios <i class='icon ion-person'></i>",
+        en:"User Area <i class='icon ion-person'></i>",
+        fr:"Zone Client <i class='icon ion-person'></i>"
     }
 }
 
@@ -43,6 +49,7 @@ $(document).ready(function(){
 
     function renderTexts(){
        $('#motto').html(textContent.motto[lang])
+       $('.js--login').html(textContent.area[lang])
        $('.js--warning').html(textContent.warning[lang])
        $('.js--scroll--to--colecciones').html(textContent.menu.colecciones[lang])
 
@@ -428,6 +435,16 @@ $(document).ready(function(){
     })  
 
  
+    $('.js--login').click(function(){
+
+        closeMenu()
+        //TODO: Abrir formulario de login 
+        console.log("login");
+
+      
+        return false
+    })  
+
 
     $('.js--scroll--to--nuestraEmpresa').click(function(){
        
