@@ -263,3 +263,22 @@ OTRAS SECCIONES
     height:960px;
 
 }
+
+.PieDePagina{
+    color:white;
+    margin:1rem 0 4rem 1rem;
+    background:none;
+    font-size:0.8rem;
+    text-align:center;
+
+    ul{
+        list-style-type:none;
+    }
+
+    .logo{
+        width:10rem;
+    }
+}
+
+
+
