@@ -21,11 +21,17 @@ var textContent = {
         }
     },
 
+    // warning:{
+    //         es:"Esta página se encuentra en proceso de actualizacion. En dias sucesivos se irá incorporando funcionalidad adicional",
+    //         en:"This page is in the process of being updated. In the next days, additional functionality will be added",
+    //         fr:"Cette page est en cours de mise à jour. Au cours des jours suivants, des fonctionnalités supplémentaires seront ajoutées"
+    // },
+
     warning:{
-            es:"Esta página se encuentra en proceso de actualizacion. En dias sucesivos se irá incorporando funcionalidad adicional",
-            en:"This page is in the process of being updated. In the next days, additional functionality will be added",
-            fr:"Cette page est en cours de mise à jour. Au cours des jours suivants, des fonctionnalités supplémentaires seront ajoutées"
-    },
+        es:" ",
+        en:" ",
+        fr:" "
+},
 
     area:{
         es:"Área Usuarios <i class='icon ion-person'></i>",
