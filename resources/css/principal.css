@@ -6105,6 +6105,22 @@ OTRAS SECCIONES
 
 }
 
+.PieDePagina{
+    color:white;
+    margin:1rem 0 4rem 1rem;
+    background:none;
+    font-size:0.8rem;
+    text-align:center;
+}
+
+.PieDePagina ul{
+        list-style-type:none;
+    }
+
+.PieDePagina .logo{
+        width:10rem;
+    }
+
 /* ----------------------------------------------
 MEDIA QUERIES
 ---------------------------------------------- */
