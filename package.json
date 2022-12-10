@@ -5,7 +5,7 @@
   "main": "Connect.js",
   "dependencies": {
     "config": "^3.0.1",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
